@@ -49,9 +49,8 @@ prompt_git() {
 }
 
 local ret_status="%(?:%{$fg_bold[green]%}λ:%{$fg_bold[red]%}λ)"
-local aws_profile="%{$fg[cyan]%}$AWS_DEFAULT_PROFILE%{$reset_color%}"
 local dir="%{$fg[cyan]%}%c%{$reset_color%}"
-PROMPT='${ret_status} $dir $aws_profile  $(prompt_git)'
+PROMPT='${ret_status} $dir $(prompt_git)'
 
 #ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 #ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
