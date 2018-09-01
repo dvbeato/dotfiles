@@ -1,0 +1,11 @@
+repl-history
+*.jar
+*.elc
+.recentf
+elpa/
+backups/
+cider-history
+emacs.d/history
+projectile-bookmarks*
+auto-save-list/
+gitconfig

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function create_link() {
+  if [[ -e $2 ]]; then
+    echo "File $2 already exists"
+  else
+    echo "Creating symlink to $2"
+    ln -s $HOME/.dotfiles/$1 $2
+  fi
+}
+
+create_link zshrc $HOME/.zshrc
+create_link tmux.conf $HOME/.tmux.conf
+create_link emacs.d/ $HOME/.emacs.d
+create_link gitconfig/gitconfig $HOME/.gitconfig
+create_link gitconfig/gitignore $HOME/.gitignore
+create_link vim/ $HOME/.vim
+create_link vim/vimrc $HOME/.vimrc

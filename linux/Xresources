@@ -1,0 +1,198 @@
+
+Xcursor.size: 10
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+
+!! Grubox
+! hard contrast:
+*background: #1d2021
+!*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+!! Molokai
+!*foreground:#CCCCCC
+!*background:#1B1D1E
+!!black darkgray
+!*color0:    #1B1D1E
+!*color8:    #808080
+!!!darkred red
+!*color1:    #FF0044
+!*color9:    #F92672
+!!!darkgreen green
+!*color2:    #82B414
+!*color10:   #A6E22E
+!!!darkyellow yellow
+!*color3:    #FD971F
+!*color11:   #E6DB74
+!!!darkblue blue
+!*color4:    #266C98
+!*color12:   #7070F0
+!!!darkmagenta magenta
+!*color5:    #AC0CB1
+!*color13:   #D63AE1
+!!!darkcyan cyan
+!*color6:    #AE81FF
+!*color14:   #66D9EF
+!!!gray white
+!*color7:    #CCCCCC
+!*color15:   #F8F8F2
+
+!! Dracula Xresources palette
+! *.foreground: #F8F8F2
+! *.background: #282A36
+! *.color0:     #000000
+! *.color8:     #4D4D4D
+! *.color1:     #FF5555
+! *.color9:     #FF6E67
+! *.color2:     #50FA7B
+! *.color10:    #5AF78E
+! *.color3:     #F1FA8C
+! *.color11:    #F4F99D
+! *.color4:     #BD93F9
+! *.color12:    #CAA9FA
+! *.color5:     #FF79C6
+! *.color13:    #FF92D0
+! *.color6:     #8BE9FD
+! *.color14:    #9AEDFE
+!! *.color7:     #BFBFBF
+! *.color7:    #201E2A
+! *.color15:    #E6E6E6
+
+! Nord palette
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+!*.foreground:   nord4
+!*.background:   nord0
+!*.cursorColor:  nord4
+!*fading: 35
+!*fadeColor: nord3
+!
+!*.color0: nord1
+!*.color1: nord11
+!*.color2: nord14
+!*.color3: nord13
+!*.color4: nord9
+!*.color5: nord15
+!*.color6: nord8
+!*.color7: nord5
+!*.color8: nord3
+!*.color9: nord11
+!*.color10: nord14
+!*.color11: nord13
+!*.color12: nord9
+!*.color13: nord15
+!*.color14: nord7
+!*.color15: nord6
+
+
+!! special
+!*.foreground:   #dcd5f3
+!*.background:   #18171c
+!*.cursorColor:  #dcd5f3
+!
+!! black
+!*.color0:       #131218
+!*.color8:       #171620
+!
+!! red
+!*.color1:       #f50d59
+!*.color9:       #ff8d3d
+!
+!! green
+!*.color2:       #6bc2ed
+!*.color10:      #17d495
+!
+!! yellow
+!*.color3:       #f0b65e
+!*.color11:      #6a92c4
+!
+!! blue
+!*.color4:       #dcd5f3
+!*.color12:      #5a539c
+!
+!! magenta
+!*.color5:       #4e5165
+!*.color13:      #1ae0d5
+!
+!! cyan
+!*.color6:       #58339d
+!*.color14:      #a488df
+!
+!! white
+!*.color7:       #ac98d1
+!*.color15:      #dbd3eb
+
+
+! ------------------------------------------------------------------------------
+! URxvt
+! ------------------------------------------------------------------------------
+URxvt*termName: screen-256color
+URxvt*meta8: true
+!URxvt*geometry: 240X84
+URxvt*loginShell: true
+URxvt*scrollBar: false
+URxvt*cursorBlink: true
+URxvt*pointerBlank: true
+URxvt*visualBell: false
+!URxvt*transparent: true
+!URxvt*shading: 15
+!URxvt*depth: 32
+URxvt*font: xft:Monaco for Powerline:pixelsize=15
+URxvt*boldfont: xft:Monaco for Powerline
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+! ------------------------------------------------------------------------------
+! xTerm
+! ------------------------------------------------------------------------------
+XTerm.vt100.locale: true
+XTerm.termName: xterm-256color
+XTerm*faceSize: 13
+XTerm*faceName: Monaco for Powerline,DejaVu Sans Mono for Powerline,FontAwesome
+XTerm*VT100.Translations: #override \
+	Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+        Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
+
