@@ -12,6 +12,7 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 (setq show-paren-mode t)
+(set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; No splash screen
@@ -54,6 +55,14 @@
 (use-package magit
   :ensure t)
 
+(use-package ag
+  :ensure t)
+
+(use-package helm-ag
+  :ensure t
+  :bind
+  (("M-#" . helm-ag-project-root)))
+
 (use-package flatland-theme
   :ensure t
   :config (load-theme 'flatland t))
@@ -82,6 +91,8 @@
 
 (use-package neotree
   :ensure t
+  :bind
+  (("M-1" . neotree-toggle))
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
@@ -97,23 +108,36 @@
   (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
   (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
   (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-  (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
-  )
+  (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
+
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode)
+  (setq company-selection-wrap-around t)
+  (define-key company-active-map [tab] 'company-complete))
+
+(use-package markdown-mode
+  :ensure t)
 
 (use-package helm
-  :ensure t)
+  :ensure t
+  :bind
+  (("M-x" . helm-M-x))
+  :config
+  (helm-mode t))
 
 (use-package projectile
   :ensure t
-  :bind (("C-c s" . projectile-switch-open-project)
-  ("C-x p" . projectile-switch-project))
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t))
 
 (use-package helm-projectile
   :ensure t
-  :bind ("M-p" . helm-projectile-find-file)
+  :bind
+  (("M-O" . helm-projectile-find-file)
+   ("M-P" . helm-projectile-switch-project))
   :config
   (helm-projectile-on))
 
@@ -130,6 +154,10 @@
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode))
 
+(use-package whitespace
+  :config
+  (setq whitespace-line-column 120))
+
 ;; whitespace settings
 (global-whitespace-mode t)
 (custom-set-variables
@@ -139,18 +167,18 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (all-the-icons flatland-theme magit neotree helm-projectile helm projectile cider clojure-mode paredit rainbow-delimiters zenburn-theme evil use-package)))
+    (markdown-mode company helm-ag all-the-icons flatland-theme magit neotree helm-projectile helm projectile cider clojure-mode paredit rainbow-delimiters zenburn-theme evil use-package)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
-		 [183]
-		 [46])
+                 [183]
+                 [46])
      (space-mark 160
-		 [164]
-		 [95])
+                 [164]
+                 [95])
      (tab-mark 9
-	       [187 9]
-	       [92 9])))))
+               [187 9]
+               [92 9])))))
 (set-face-attribute 'whitespace-space nil :background nil :foreground "gray20")
 
 (custom-set-faces
