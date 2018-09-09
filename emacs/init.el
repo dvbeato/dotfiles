@@ -1,3 +1,11 @@
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super))
+
+(when (eq system-type 'gnu/linux)
+  ;; do linux settings
+  )
+
 ;; Interface settings
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
