@@ -1,6 +1,7 @@
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super))
+  (setq mac-option-modifier 'super)
+  (set-face-attribute 'default nil :family "Monaco" :height 160))
 
 (when (eq system-type 'gnu/linux)
   ;; do linux settings
