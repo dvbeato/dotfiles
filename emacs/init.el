@@ -132,7 +132,8 @@
 (use-package helm
   :ensure t
   :bind
-  (("M-x" . helm-M-x))
+  (("M-x" . helm-M-x)
+   ("M-e" . helm-buffers-list))
   :config
   (helm-mode t))
 
@@ -158,14 +159,18 @@
 
 (use-package cider
   :ensure t
+  :bind
+  (("M-b" . cider-find-var)
+   ("M-s-<left>" . cider-pop-back))
   :config
   (setq nrepl-log-messages t)
+  (setq cider-prompt-for-symbol nil)
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode))
 
 (use-package whitespace
   :config
-  (setq whitespace-line-column 120))
+  (setq whitespace-line-column 320))
 
 ;; whitespace settings
 (global-whitespace-mode t)
@@ -180,7 +185,7 @@
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
-                 [183]
+                 [46]
                  [46])
      (space-mark 160
                  [164]

@@ -9,3 +9,5 @@ emacs.d/history
 projectile-bookmarks*
 auto-save-list/
 gitconfig
+*~
+*#
