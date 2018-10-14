@@ -129,6 +129,12 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package yaml-mode
+  :ensure t)
+
+(use-package docker-compose-mode
+  :ensure t)
+
 (use-package helm
   :ensure t
   :bind
@@ -181,18 +187,18 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (markdown-mode company helm-ag all-the-icons flatland-theme magit neotree helm-projectile helm projectile cider clojure-mode paredit rainbow-delimiters zenburn-theme evil use-package)))
+    (0blayout markdown-mode company helm-ag all-the-icons flatland-theme magit neotree helm-projectile helm projectile cider clojure-mode paredit rainbow-delimiters zenburn-theme evil use-package)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
                  [46]
                  [46])
      (space-mark 160
-                 [164]
-                 [95])
+     [164]
+     [95])
      (tab-mark 9
-               [187 9]
-               [92 9])))))
+         [187 9]
+         [92 9])))))
 (set-face-attribute 'whitespace-space nil :background nil :foreground "gray20")
 
 (custom-set-faces
