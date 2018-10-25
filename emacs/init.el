@@ -23,9 +23,13 @@
 (setq show-paren-mode t)
 (set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(savehist-mode)
 
 ;; No splash screen
 (setq inhibit-startup-message t)
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(fullscreen . fullheight))
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
 ;; Reload init file
 (defun reload-init-file ()
@@ -72,9 +76,18 @@
   :bind
   (("M-#" . helm-ag-project-root)))
 
-(use-package flatland-theme
+;;(use-package flatland-theme
+;;  :ensure t
+;;  :config (load-theme 'flatland t))
+
+;;(use-package dracula-theme
+;;  :init t)
+
+(use-package kaolin-themes
   :ensure t
-  :config (load-theme 'flatland t))
+  :config
+  (load-theme 'kaolin-bubblegum t)
+  (kaolin-treemacs-theme))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -174,9 +187,21 @@
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode))
 
+(use-package exec-path-from-shell
+  :ensure t)
+
 (use-package whitespace
   :config
+  (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark )))
   (setq whitespace-line-column 320))
+
+(use-package powerline
+  :ensure t)
+
+(use-package powerline-evil
+  :ensure t
+  :config
+  (powerline-evil-vim-color-theme))
 
 ;; whitespace settings
 (global-whitespace-mode t)
@@ -185,9 +210,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("e893b3d424a9b8b19fb8ab8612158c5b12b9071ea09bade71ba60f43c69355e6" "f4260b30a578a781b4c0858a4a0a6071778aaf69aed4ce2872346cbb28693c1a" default)))
  '(package-selected-packages
    (quote
-    (0blayout markdown-mode company helm-ag all-the-icons flatland-theme magit neotree helm-projectile helm projectile cider clojure-mode paredit rainbow-delimiters zenburn-theme evil use-package)))
+    (powerline-evil powerline kaolin-themes use-package rainbow-delimiters paredit neotree markdown-mode magit helm-projectile helm-ag exec-path-from-shell evil company cider all-the-icons ag)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
@@ -207,3 +235,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(load "~/.emacs.d/nu.el")
