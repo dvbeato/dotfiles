@@ -236,4 +236,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load "~/.emacs.d/nu.el")
+(let ((nufile "~/.emacs.d/nu.el"))
+  (when (file-exists-p nufile)
+    (load nufile)))
