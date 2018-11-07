@@ -12,6 +12,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+(global-auto-revert-mode 1)
 (global-hl-line-mode t)
 (global-linum-mode t)
 (setq column-number-mode t)
@@ -30,6 +31,12 @@
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
+;; auto-save and auto-backup
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; Reload init file
 (defun reload-init-file ()
