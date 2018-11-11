@@ -1,12 +1,3 @@
-(when (eq system-type 'darwin)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super)
-  (set-face-attribute 'default nil :family "Monaco" :height 160))
-
-(when (eq system-type 'gnu/linux)
-  ;; do linux settings
-  )
-
 ;; Interface settings
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -53,6 +44,7 @@
 
 (load-theme 'wombat)
 
+
 ;; PACKAGES
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -82,19 +74,6 @@
   :ensure t
   :bind
   (("M-#" . helm-ag-project-root)))
-
-;;(use-package flatland-theme
-;;  :ensure t
-;;  :config (load-theme 'flatland t))
-
-;;(use-package dracula-theme
-;;  :init t)
-
-(use-package kaolin-themes
-  :ensure t
-  :config
-  (load-theme 'kaolin-bubblegum t)
-  (kaolin-treemacs-theme))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -210,6 +189,22 @@
   :config
   (powerline-evil-vim-color-theme))
 
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+  (set-face-attribute 'default nil :family "Monaco" :height 160)
+
+  (use-package kaolin-themes
+    :ensure t
+    :config
+    (load-theme 'kaolin-bubblegum t)
+    (kaolin-treemacs-theme)))
+
+(when (eq system-type 'gnu/linux)
+  ;; do linux settings
+  (use-package atom-one-dark-theme
+    :ensure t))
+
 ;; whitespace settings
 (global-whitespace-mode t)
 (custom-set-variables
@@ -219,21 +214,21 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("e893b3d424a9b8b19fb8ab8612158c5b12b9071ea09bade71ba60f43c69355e6" "f4260b30a578a781b4c0858a4a0a6071778aaf69aed4ce2872346cbb28693c1a" default)))
+    ("adf5275cc3264f0a938d97ded007c82913906fc6cd64458eaae6853f6be287ce" "cc8d032279b50d4c8a0caa9df6245cbbbfbfcc74f9b2ec26054ea4306fdf6b24" "d890583c83cb36550c2afb38b891e41992da3b55fecd92e0bb458fb047d65fb3" "35eddbaa052a71ab98bbe0dbc1a5cb07ffbb5d569227ce00412579c2048e7699" "e1ad20f721b90cc8e1f57fb8150f81e95deb7ecdec2062939389a4b66584c0cf" "f97e1d3abc6303757e38130f4003e9e0d76026fc466d9286d661499158a06d99" "9399db70f2d5af9c6e82d4f5879b2354b28bc7b5e00cc8c9d568e5db598255c4" "e2ba9d9a5609c6809615d68b2e3ee6817079cd0195143385c24ee4e4a8e05c23" "e893b3d424a9b8b19fb8ab8612158c5b12b9071ea09bade71ba60f43c69355e6" "f4260b30a578a781b4c0858a4a0a6071778aaf69aed4ce2872346cbb28693c1a" default)))
  '(package-selected-packages
    (quote
-    (powerline-evil powerline kaolin-themes use-package rainbow-delimiters paredit neotree markdown-mode magit helm-projectile helm-ag exec-path-from-shell evil company cider all-the-icons ag)))
+    (atom-one-dark-theme powerline-evil powerline kaolin-themes use-package rainbow-delimiters paredit neotree markdown-mode magit helm-projectile helm-ag exec-path-from-shell evil company cider all-the-icons ag)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
-                 [46]
-                 [46])
+		 [46]
+		 [46])
      (space-mark 160
-     [164]
-     [95])
+		 [164]
+		 [95])
      (tab-mark 9
-         [187 9]
-         [92 9])))))
+	       [187 9]
+	       [92 9])))))
 (set-face-attribute 'whitespace-space nil :background nil :foreground "gray20")
 
 (custom-set-faces
