@@ -248,16 +248,16 @@
 
 (when (eq system-type 'gnu/linux)
   ;; do linux settings
+  (set-face-attribute 'default nil :family "Ubuntu Mono" :height 120)
   
-  (use-package kaolin-themes
-    :ensure t
-    :config
-    (load-theme 'kaolin-aurora t)
-    (kaolin-treemacs-theme))
-  ;; (use-package gruvbox-theme
+  ;; (use-package kaolin-themes
   ;;   :ensure t
   ;;   :config
-  ;;   (load-theme 'gruvbox-dark-medium t))
+  ;;   (load-theme 'kaolin-aurora t)
+  ;;   (kaolin-treemacs-theme))
+   (use-package darktooth-theme
+     :ensure t
+     )
   )
 
 (use-package org
@@ -279,7 +279,7 @@
  '(org-agenda-files (quote ("~/Dropbox/org/diogo.beato.org")))
  '(package-selected-packages
    (quote
-    (spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
+    (nyan-mode darktooth-theme spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
