@@ -206,12 +206,21 @@
   (setq whitespace-line-column 320))
 
 (use-package powerline
-  :ensure t)
-
-(use-package powerline-evil
   :ensure t
   :config
-  (powerline-evil-vim-color-theme))
+  (setq powerline-default-separator 'wave
+        powerline-display-buffer-size -1
+        powerline-height 20))
+
+(use-package diminish
+  :ensure t)
+
+(use-package spaceline
+  :ensure t
+  :config
+  (spaceline-spacemacs-theme)
+  (spaceline-helm-mode))
+
 
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
@@ -239,8 +248,17 @@
 
 (when (eq system-type 'gnu/linux)
   ;; do linux settings
-  (use-package atom-one-dark-theme
-    :ensure t))
+  
+  (use-package kaolin-themes
+    :ensure t
+    :config
+    (load-theme 'kaolin-aurora t)
+    (kaolin-treemacs-theme))
+  ;; (use-package gruvbox-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'gruvbox-dark-medium t))
+  )
 
 (use-package org
   :config
@@ -257,11 +275,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("d890583c83cb36550c2afb38b891e41992da3b55fecd92e0bb458fb047d65fb3" "75d3dde259ce79660bac8e9e237b55674b910b470f313cdf4b019230d01a982a" "2757944f20f5f3a2961f33220f7328acc94c88ef6964ad4a565edc5034972a53" "d1b4990bd599f5e2186c3f75769a2c5334063e9e541e37514942c27975700370" "9399db70f2d5af9c6e82d4f5879b2354b28bc7b5e00cc8c9d568e5db598255c4" "6d589ac0e52375d311afaa745205abb6ccb3b21f6ba037104d71111e7e76a3fc" "151bde695af0b0e69c3846500f58d9a0ca8cb2d447da68d7fbf4154dcf818ebc" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "100e7c5956d7bb3fd0eebff57fde6de8f3b9fafa056a2519f169f85199cc1c96" default)))
+    ("2a9039b093df61e4517302f40ebaf2d3e95215cb2f9684c8c1a446659ee226b9" "e2fd81495089dc09d14a88f29dfdff7645f213e2c03650ac2dd275de52a513de" "d890583c83cb36550c2afb38b891e41992da3b55fecd92e0bb458fb047d65fb3" "75d3dde259ce79660bac8e9e237b55674b910b470f313cdf4b019230d01a982a" "2757944f20f5f3a2961f33220f7328acc94c88ef6964ad4a565edc5034972a53" "d1b4990bd599f5e2186c3f75769a2c5334063e9e541e37514942c27975700370" "9399db70f2d5af9c6e82d4f5879b2354b28bc7b5e00cc8c9d568e5db598255c4" "6d589ac0e52375d311afaa745205abb6ccb3b21f6ba037104d71111e7e76a3fc" "151bde695af0b0e69c3846500f58d9a0ca8cb2d447da68d7fbf4154dcf818ebc" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "100e7c5956d7bb3fd0eebff57fde6de8f3b9fafa056a2519f169f85199cc1c96" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/diogo.beato.org")))
  '(package-selected-packages
    (quote
-    (doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
+    (spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
