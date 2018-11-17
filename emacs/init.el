@@ -1,7 +1,6 @@
-;; Interface settings
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 (global-auto-revert-mode 1)
 (global-hl-line-mode t)
@@ -59,6 +58,7 @@
   (package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 
 (require 'use-package)
@@ -93,6 +93,14 @@
   (add-hook 'ielm-mode-hook #'paredit-mode)
   (add-hook 'lisp-mode-hook #'paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
+
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
 
 (use-package all-the-icons
   :ensure t)
@@ -139,14 +147,30 @@
   :bind
   (("M-x" . helm-M-x)
    ("M-e" . helm-buffers-list))
+  :init
+  (setq helm-M-x-fuzzy-match t
+        helm-mode-fuzzy-match t
+        helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match t
+        helm-locate-fuzzy-match t
+        helm-semantic-fuzzy-match t
+        helm-imenu-fuzzy-match t
+        helm-completion-in-region-fuzzy-match t
+        helm-candidate-number-list 150
+        helm-split-window-in-side-p t
+        helm-move-to-line-cycle-in-source t
+        helm-echo-input-in-header-line t
+        helm-autoresize-max-height 0
+        helm-autoresize-min-height 20)
   :config
   (helm-mode t))
 
 (use-package projectile
   :ensure t
+  :init
+  (setq projectile-require-project-root nil)
   :config
-  (projectile-global-mode)
-  (setq projectile-enable-caching t))
+  (projectile-global-mode))
 
 (use-package helm-projectile
   :ensure t
@@ -192,13 +216,26 @@
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'super)
-  (set-face-attribute 'default nil :family "Monaco" :height 150)
+  (set-face-attribute 'default nil :family "Monaco" :height 140)
 
-  (use-package kaolin-themes
+  ;; Fancy titlebar for MacOS
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (setq ns-use-proxy-icon  nil)
+  (setq frame-title-format nil)
+
+  (use-package doom-themes
     :ensure t
     :config
-    (load-theme 'kaolin-bubblegum t)
-    (kaolin-treemacs-theme)))
+    (load-theme 'doom-city-lights t)
+    (doom-themes-org-config)
+    (doom-themes-neotree-config))
+  ;; (use-package kaolin-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'kaolin-bubblegum t)
+  ;;   (kaolin-treemacs-theme))
+  )
 
 (when (eq system-type 'gnu/linux)
   ;; do linux settings
@@ -214,21 +251,28 @@
 ;; whitespace settings
 (global-whitespace-mode t)
 (custom-set-variables
-  ; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-  '(whitespace-display-mappings
-     (quote
-       ((space-mark 32
-                    [46]
-                    [46])
-        (space-mark 160
-                    [164]
-                    [95])
-        (tab-mark 9
-                  [187 9]
-                  [92 9])))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("d890583c83cb36550c2afb38b891e41992da3b55fecd92e0bb458fb047d65fb3" "75d3dde259ce79660bac8e9e237b55674b910b470f313cdf4b019230d01a982a" "2757944f20f5f3a2961f33220f7328acc94c88ef6964ad4a565edc5034972a53" "d1b4990bd599f5e2186c3f75769a2c5334063e9e541e37514942c27975700370" "9399db70f2d5af9c6e82d4f5879b2354b28bc7b5e00cc8c9d568e5db598255c4" "6d589ac0e52375d311afaa745205abb6ccb3b21f6ba037104d71111e7e76a3fc" "151bde695af0b0e69c3846500f58d9a0ca8cb2d447da68d7fbf4154dcf818ebc" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "100e7c5956d7bb3fd0eebff57fde6de8f3b9fafa056a2519f169f85199cc1c96" default)))
+ '(org-agenda-files (quote ("~/Dropbox/org/diogo.beato.org")))
+ '(package-selected-packages
+   (quote
+    (doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
+ '(whitespace-display-mappings
+   (quote
+    ((space-mark 32
+                 [46]
+                 [46])
+     (space-mark 160
+                 [164]
+                 [95])
+     (tab-mark 9
+               [187 9]
+               [92 9])))))
 (set-face-attribute 'whitespace-space nil :background nil :foreground "gray20")
 
 (custom-set-faces
