@@ -239,25 +239,16 @@
   ;;   (load-theme 'doom-city-lights t)
   ;;   (doom-themes-org-config)
   ;;   (doom-themes-neotree-config))
-   (use-package kaolin-themes
-     :ensure t
-     :config
-     (load-theme 'kaolin-aurora t))
-  )
+  (use-package kaolin-themes
+    :ensure t
+    :config
+    (load-theme 'kaolin-aurora t)))
 
 (when (eq system-type 'gnu/linux)
-  ;; do linux settings
   (set-face-attribute 'default nil :family "Ubuntu Mono" :height 120)
-  
-  ;; (use-package kaolin-themes
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'kaolin-aurora t)
-  ;;   (kaolin-treemacs-theme))
+
    (use-package darktooth-theme
-     :ensure t
-     )
-  )
+     :ensure t))
 
 (use-package org
   :config
