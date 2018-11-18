@@ -233,17 +233,16 @@
   (setq ns-use-proxy-icon  nil)
   (setq frame-title-format nil)
 
-  (use-package doom-themes
-    :ensure t
-    :config
-    (load-theme 'doom-city-lights t)
-    (doom-themes-org-config)
-    (doom-themes-neotree-config))
-  ;; (use-package kaolin-themes
+  ;; (use-package doom-themes
   ;;   :ensure t
   ;;   :config
-  ;;   (load-theme 'kaolin-bubblegum t)
-  ;;   (kaolin-treemacs-theme))
+  ;;   (load-theme 'doom-city-lights t)
+  ;;   (doom-themes-org-config)
+  ;;   (doom-themes-neotree-config))
+   (use-package kaolin-themes
+     :ensure t
+     :config
+     (load-theme 'kaolin-aurora t))
   )
 
 (when (eq system-type 'gnu/linux)
