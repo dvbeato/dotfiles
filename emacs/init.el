@@ -180,6 +180,20 @@
   :config
   (helm-projectile-on))
 
+(use-package auto-complete
+  :ensure t)
+
+(use-package go-mode
+  :ensure t
+  :bind
+  (("M-," . godef-jump)
+   ("M-." . pop-tag-mark))
+  :init
+  (add-hook 'before-save-hook 'gofmt-before-save))
+
+(use-package go-autocomplete
+  :ensure t)
+
 (use-package clojure-mode
   :ensure t
   :config
@@ -269,7 +283,7 @@
  '(org-agenda-files (quote ("~/Dropbox/org/diogo.beato.org")))
  '(package-selected-packages
    (quote
-    (nyan-mode darktooth-theme spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
+    (go-autocomplete go-mode nyan-mode darktooth-theme spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
