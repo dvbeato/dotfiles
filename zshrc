@@ -93,6 +93,13 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 export VISUAL=vim
 
+# export GOLANG envvars
+export GOROOT="$HOME/.asdf/installs/golang/1.9/go"
+export GOPATH="$HOME/Development/workspaces/golang"
+export GOBIN="$GOPATH/bin"
+
+export PATH=$GOBIN:$PATH
+
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
