@@ -186,8 +186,14 @@
 (use-package go-mode
   :ensure t
   :bind
-  (("M-," . godef-jump)
+  (("M-*" . godef-jump)
    ("M-." . pop-tag-mark))
+  :preface
+  (defun my-go-mode-hook ()
+    (if (not (string-match "go" compile-command))
+        (set (make-local-variable 'compile-command)
+             "go build -v && go test -v && go vet")))
+  :hook (go-mode . my-go-mode-hook)
   :init
   (add-hook 'before-save-hook 'gofmt-before-save))
 
