@@ -101,8 +101,10 @@ syntax enable
 try
   set term=screen-256color
   set t_Co=256              " Enable 256 colors
-  set background=dark
-  colorscheme gruvbox
+"  set background=dark
+"  colorscheme gruvbox
+  set cursorline
+  hi CursorLine term=bold cterm=bold ctermbg=236 guibg=Grey60
 catch
 endtry
 
