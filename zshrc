@@ -1,6 +1,7 @@
 if [ -z $TMUX ]; then;
-    tmux
+   tmux
 fi
+
 export ZPLUG_HOME=/usr/local/opt/zplug
 [[ -s "$ZPLUG_HOME/init.zsh" ]] && source $ZPLUG_HOME/init.zsh
 

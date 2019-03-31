@@ -11,7 +11,7 @@ function create_link() {
 
 create_link zshrc $HOME/.zshrc
 create_link tmux.conf $HOME/.tmux.conf
-create_link emacs.d/ $HOME/.emacs.d
+create_link emacs/ $HOME/.emacs.d
 create_link gitconfig/gitconfig $HOME/.gitconfig
 create_link gitconfig/gitignore $HOME/.gitignore
 create_link vim/ $HOME/.vim
