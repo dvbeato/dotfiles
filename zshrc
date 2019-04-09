@@ -98,8 +98,9 @@ export VISUAL=vim
 export GOROOT="$HOME/.asdf/installs/golang/1.11.4/go"
 export GOPATH="$HOME/Development/workspaces/golang"
 export GOBIN="$GOPATH/bin"
+export LOCAL_BIN="$HOME/.local/bin"
 
-export PATH=$GOBIN:$PATH
+export PATH=$GOBIN:$LOCAL_BIN:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -148,8 +149,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias pbpaste='xclip -selection clipboard -o'
 
   export APPS_HOME=$HOME/Applications
-  export SUBL_HOME=$APPS_HOME/sublime_text_3
-  export PATH="$SUBL_HOME:$PATH"
+  export BREW=/home/linuxbrew/.linuxbrew/bin
+  export PATH="$BREW:$PATH"
 fi
 
 # functions

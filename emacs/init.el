@@ -206,6 +206,9 @@
   (add-hook 'clojure-mode-hook #'paredit-mode)
   (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
 
+(use-package clj-refactor
+  :ensure t)
+
 (use-package cider
   :ensure t
   :bind
@@ -274,7 +277,9 @@
   :config
   (custom-set-variables '(org-agenda-files (quote ("~/Dropbox/org/diogo.beato.org"))))
   (setq org-src-preserve-indentation nil
-        org-edit-src-content-indentation 0))
+        org-edit-src-content-indentation 0
+        org-todo-keywords
+        '((sequence "TODO" "DOING" "VERIFY" "|" "DONE" "DELEGATED"))))
 
 ;; whitespace settings
 (global-whitespace-mode t)
@@ -289,7 +294,7 @@
  '(org-agenda-files (quote ("~/Dropbox/org/diogo.beato.org")))
  '(package-selected-packages
    (quote
-    (go-autocomplete go-mode nyan-mode darktooth-theme spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
+    (clj-refactor go-autocomplete go-mode nyan-mode darktooth-theme spaceline gruvbox-theme telephone-line doom-themes use-package rainbow-delimiters powerline-evil paredit neotree markdown-mode magit kaolin-themes helm-projectile helm-ag exec-path-from-shell docker-compose-mode company cider all-the-icons ag)))
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
