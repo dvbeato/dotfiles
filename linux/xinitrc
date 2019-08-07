@@ -40,6 +40,5 @@ fi
 eval "$(ssh-agent -s)"
 
 nitrogen --restore &
-
 exec i3
 

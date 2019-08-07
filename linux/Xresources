@@ -188,11 +188,12 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 ! ------------------------------------------------------------------------------
 ! xTerm
 ! ------------------------------------------------------------------------------
-XTerm.vt100.locale: true
-XTerm.termName: xterm-256color
-XTerm*faceSize: 13
-XTerm*faceName: Monaco for Powerline,DejaVu Sans Mono for Powerline,FontAwesome
-XTerm*VT100.Translations: #override \
+xterm.vt100.locale: true
+xterm.termName: xterm-256color
+xterm*faceSize: 12
+xterm*faceName: Ubuntu Mono
+xterm*renderFont: true
+xterm*VT100.Translations: #override \
 	Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
         Ctrl Shift <Key>C: copy-selection(CLIPBOARD)
 
