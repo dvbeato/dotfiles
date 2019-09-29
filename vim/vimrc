@@ -18,16 +18,20 @@ call plug#begin('~/.vim/plugged')
 
 
   "#### LANG AND FRAMEWORKS
+
+  " clojure plugins
+  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
   " ruby plugins
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'thoughtbot/vim-rspec'
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
 
   "#### COSMETICS
   " colorschemas
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'dracula/vim'
-  Plug 'morhetz/gruvbox'
+"  Plug 'arcticicestudio/nord-vim'
+"  Plug 'dracula/vim'
+"  Plug 'morhetz/gruvbox'
   "let g:gruvbox_contrast_dark='hard'
 
   " air-line plugins
@@ -142,7 +146,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
-map <M-S-o> :Files<CR>
+map <M-P> :Files<CR>
+map <M-e> :Buffers<CR>
 map <M-S-c> :Commits<CR>
 
 if has('gui_running')

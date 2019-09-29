@@ -9,7 +9,7 @@ function create_link() {
   fi
 }
 
-#create_link zshrc $HOME/.zshrc
+create_link zshrc $HOME/.zshrc
 create_link tmux.conf $HOME/.tmux.conf
 #create_link emacs/ $HOME/.emacs.d
 #create_link vim/ $HOME/.vim
