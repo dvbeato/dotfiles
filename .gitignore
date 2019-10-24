@@ -11,3 +11,6 @@ auto-save-list/
 gitconfig
 *~
 *#
+emacs/history
+emacs/transient/
+emacs/ac-comphist.dat

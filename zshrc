@@ -2,6 +2,7 @@ if [ -z $TMUX ]; then;
    tmux
 fi
 
+export ZSH_DISABLE_COMPFIX=true
 export ZPLUG_HOME=/usr/local/opt/zplug
 [[ -s "$ZPLUG_HOME/init.zsh" ]] && source $ZPLUG_HOME/init.zsh
 
@@ -95,7 +96,7 @@ export EDITOR='vim'
 export VISUAL=vim
 
 # export GOLANG envvars
-export GOROOT="$HOME/.asdf/installs/golang/1.11.4/go"
+export GOROOT="$HOME/.asdf/installs/golang/1.12.5/go"
 export GOPATH="$HOME/Development/workspaces/golang"
 export GOBIN="$GOPATH/bin"
 export LOCAL_BIN="$HOME/.local/bin"
