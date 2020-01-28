@@ -96,12 +96,13 @@ export EDITOR='vim'
 export VISUAL=vim
 
 # export GOLANG envvars
-export GOROOT="$HOME/.asdf/installs/golang/1.12.5/go"
-export GOPATH="$HOME/Development/workspaces/golang"
+# export GOPATH=$HOME/go
+# export GOROOT="$HOME/.asdf/installs/golang/1.12.5/go"
+export GOPATH="$HOME/Development/workspaces"
 export GOBIN="$GOPATH/bin"
 export LOCAL_BIN="$HOME/.local/bin"
 
-export PATH=$GOBIN:$LOCAL_BIN:$PATH
+export PATH=$GOBIN:/usr/local/go/bin:/usr/local/kubebuilder/bin:$LOCAL_BIN:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -142,6 +143,10 @@ alias pong='ping www.google.com'
 alias myip="ifconfig | grep 'inet ' | cut -d ' ' -f2 | grep -v '127.0.0.1'"
 
 alias ll='ls -lhap'
+
+if [ -x "$(command -v nvim)" ]; then
+  alias vim='nvim'
+fi
 
 # LINUX only
 if [[ "$OSTYPE" == "linux-gnu" ]]; then

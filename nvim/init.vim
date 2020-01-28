@@ -1,11 +1,11 @@
 " Diogo Beato vimrc configurations
 " diogobeato.com - @dvbeato
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
   "#### UTILITIES
   " git plugins
-  Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
+"  Plug 'tpope/vim-fugitive'
+"  Plug 'airblade/vim-gitgutter'
 
   " misc plugins
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -16,23 +16,35 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-surround'
 
+  " IDE like plugins
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   "#### LANG AND FRAMEWORKS
 
+  " golang
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
   " clojure plugins
+
+  Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
+  Plug 'vim-scripts/paredit.vim'
+  Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
+  Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
   Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
   " ruby plugins
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
-
   "#### COSMETICS
   " colorschemas
 "  Plug 'arcticicestudio/nord-vim'
 "  Plug 'dracula/vim'
+"  Plug 'nanotech/jellybeans.vim'
+  Plug 'joshdick/onedark.vim'
 "  Plug 'morhetz/gruvbox'
-  "let g:gruvbox_contrast_dark='hard'
+"  let g:gruvbox_contrast_dark='medium'
 
   " air-line plugins
   Plug 'vim-airline/vim-airline'
@@ -102,17 +114,8 @@ call plug#end()
 syntax on                   " Enable syntax highlight
 syntax enable
 
-try
-  set term=screen-256color
-  set t_Co=256              " Enable 256 colors
-"  set background=dark
-"  colorscheme gruvbox
-  set cursorline
-  hi CursorLine term=bold cterm=bold ctermbg=236 guibg=Grey60
-catch
-endtry
-
-"highlight CursorLine gui=none cterm=none ctermbg=1
+colorscheme onedark
+highlight CursorLine gui=none cterm=none ctermbg=236
 highlight ExtraWhitespace ctermbg=1
 
 set clipboard+=unnamedplus
@@ -136,7 +139,6 @@ set incsearch               " Find the next match as we type the search
 set hlsearch                " highlight matches search
 set history=100
 set backspace=indent,eol,start
-set guifont=Monaco:h14
 set listchars=tab:>-,trail:.,extends:>,precedes:<
 set list
 
@@ -163,5 +165,4 @@ let NERDTreeIgnore = ['\.pyc$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 map <C-n> :NERDTreeToggle<CR>
-nmap <leader>1 :set list!<CR>
 

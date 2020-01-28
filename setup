@@ -9,8 +9,61 @@ function create_link() {
   fi
 }
 
-create_link zshrc $HOME/.zshrc
-create_link tmux.conf $HOME/.tmux.conf
+function install_base_tools {
+sudo apt install -y \
+   curl git awscli openjdk-8-jdk python3-pip \
+   gnupg-agent ca-certificates apt-transport-https
+}
+
+function install_oh_my_zsh() {
+  sudo apt install -y zsh	
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+function config_oh_my_zsh() {
+  mv ~/.zshrc ~/.zshrc.bkp
+  create_link zshrc $HOME/.zshrc
+  create_link oh-my-zsh/custom/themes/dvbeato.zsh-theme $HOME/.oh-my-zsh/custom/themes/dvbeato.zsh-theme
+}
+
+function install_docker() {
+  echo "WARNING! it's using hardcoded ubuntu disco repository"
+  sudo apt-get remove docker docker-engine docker.io containerd runc
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    disco \
+   stable"
+  sudo apt-get update
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+}
+
+function install_applications() {
+  sudo snap install code --classic
+  sudo snap install spotify
+  sudo snap install intellij-idea-community --classic
+}
+
+function install_tmux() {
+  sudo apt install -y tmux
+  create_link tmux.conf $HOME/.tmux.conf
+  tmux
+}
+
+function install_chrome() {
+  curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  sudo add-apt-repository \
+    "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+  sudo apt update
+  sudo apt install -y google-chrome-stable
+}
+
+function install_vim() {
+  sudo apt install -y vim
+  create_link vim/ $HOME/.vim
+  create_link vim/vimrc $HOME/.vimrc
+  vim +PlugInstall
+}
+
 #create_link emacs/ $HOME/.emacs.d
-#create_link vim/ $HOME/.vim
-#create_link vim/vimrc $HOME/.vimrc
+
