@@ -173,7 +173,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # zsh-syntax-highlighting
 [[ -s "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+[[ -s "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -s "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
 [[ -s "$HOME/.asdf/completations/asdf.bash" ]] && . $HOME/.asdf/completations/asdf.bash
 
