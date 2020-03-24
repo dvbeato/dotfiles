@@ -98,7 +98,7 @@ export VISUAL=vim
 # export GOLANG envvars
 # export GOPATH=$HOME/go
 # export GOROOT="$HOME/.asdf/installs/golang/1.12.5/go"
-export GOPATH="$HOME/Development/workspaces"
+export GOPATH="$HOME/Development/go/workspaces"
 export GOBIN="$GOPATH/bin"
 export LOCAL_BIN="$HOME/.local/bin"
 
