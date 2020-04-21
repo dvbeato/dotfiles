@@ -153,6 +153,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias ls='ls --color=auto'
   alias pbcopy='xclip -selection clipboard'
   alias pbpaste='xclip -selection clipboard -o'
+  alias open='xdg-open'
 
   export APPS_HOME=$HOME/Applications
   export BREW=/home/linuxbrew/.linuxbrew/bin
