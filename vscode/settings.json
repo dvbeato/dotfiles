@@ -9,5 +9,8 @@
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
-    "workbench.colorTheme": "Monokai"
+    "workbench.colorTheme": "Monokai Dimmed",
+    "window.zoomLevel": 1,
+    "workbench.iconTheme": "material-icon-theme",
+    "debug.console.fontSize": 16
 }
