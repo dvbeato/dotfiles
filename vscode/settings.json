@@ -1,0 +1,13 @@
+{
+    "editor.fontSize": 16,
+    "editor.tabSize": 2,    
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "editor.formatOnSave": false,
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "'FiraCode Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.wordWrapColumn": 120,
+    "files.autoSave": "afterDelay",
+    "editor.renderWhitespace": "all",
+    "workbench.colorTheme": "Monokai"
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "key": "escape",
+    "command": "-calva.clearInlineResults",
+    "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && !hasOtherSuggestions && !parameterHintsVisible && !suggestWidgetVisible && editorLangId == 'clojure'"
+  },
+  {
+    "key": "ctrl+shift+f9",
+    "command": "calva.jackIn"
+  },
+  {
+    "key": "ctrl+alt+c ctrl+alt+j",
+    "command": "-calva.jackIn"
+  }
+]

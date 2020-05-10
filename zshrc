@@ -1,7 +1,4 @@
-if [ -z $TMUX ]; then;
-   tmux
-fi
-
+echo "loading! ......."
 export ZSH_DISABLE_COMPFIX=true
 export ZPLUG_HOME=/usr/local/opt/zplug
 [[ -s "$ZPLUG_HOME/init.zsh" ]] && source $ZPLUG_HOME/init.zsh
@@ -186,3 +183,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -z $TMUX ]; then;
+   tmux
+fi
+
