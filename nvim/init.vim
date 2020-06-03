@@ -114,7 +114,7 @@ call plug#end()
 syntax on                   " Enable syntax highlight
 syntax enable
 
-colorscheme onedark
+"colorscheme onedark
 highlight CursorLine gui=none cterm=none ctermbg=236
 highlight ExtraWhitespace ctermbg=1
 

@@ -416,9 +416,9 @@ background_opacity: 0.97
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /bin/zsh
-#  args:
-#    - --login
+  program: /usr/local/bin/bash
+args:
+  - --login
 
 # Startup directory
 #

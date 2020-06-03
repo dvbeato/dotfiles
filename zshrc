@@ -1,10 +1,13 @@
-echo "loading! ......."
+if [ -z $TMUX ]; then;
+   tmux
+fi
+
 export ZSH_DISABLE_COMPFIX=true
 export ZPLUG_HOME=/usr/local/opt/zplug
 [[ -s "$ZPLUG_HOME/init.zsh" ]] && source $ZPLUG_HOME/init.zsh
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -183,8 +186,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if [ -z $TMUX ]; then;
-   tmux
-fi
 
