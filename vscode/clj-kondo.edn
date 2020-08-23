@@ -1,0 +1,104 @@
+{:skip-args [#_clojure.core/comment #_cljs.core/comment]
+ :skip-comments false ;; convenient shorthand for :skip-args [clojure.core/comment cljs.core/comment]
+    ;; linter level can be tweaked by setting :level to :error, :warn or :info (or any other keyword)
+    ;; all linters are enabled by default, but can be turned off by setting :level to :off.
+ :linters {:invalid-arity {:level :error
+                           :skip-args [#_riemann.test/test-stream]}
+           :not-a-function {:level :error
+                            :skip-args [#_user/foo]}
+           :private-call {:level :error}
+           :inline-def {:level :warning}
+           :redundant-do {:level :warning}
+           :redundant-let {:level :warning}
+           :cond-else {:level :warning}
+           :syntax {:level :error}
+           :file {:level :error}
+           :missing-test-assertion {:level :warning}
+           :conflicting-alias {:level :error}
+           :constant-test-assertion {:level :warning}
+           :duplicate-map-key {:level :error}
+           :duplicate-set-key {:level :error}
+           :missing-map-value {:level :error}
+           :redefined-var {:level :warning}
+           :unreachable-code {:level :warning}
+           :datalog-syntax {:level :error}
+           :unbound-destructuring-default {:level :warning}
+           :unused-binding {:level :warning
+                            :exclude-destructured-keys-in-fn-args false}
+           :unsorted-required-namespaces {:level :off}
+           :unused-namespace {:level :warning
+                                 ;; don't warn about these namespaces:
+                              :exclude [#_clj-kondo.impl.var-info-gen]
+                                 ;; :simple-libspec true
+                              }
+           :unresolved-symbol {:level :warning
+                               :exclude [;; ignore globally:
+                                         #_js*
+                                            ;; ignore occurrences of service and event in call to riemann.streams/where:
+                                         #_(riemann.streams/where [service event])
+                                            ;; ignore all unresolved symbols in one-of:
+                                         #_(clj-kondo.impl.utils/one-of)
+                                         (user/defproject) ;; ignore project.clj's defproject
+                                         (midje.sweet/facts)
+                                         (clojure.test/fact)
+                                         (clojure.test/are [thrown? thrown-with-msg?])
+                                         (cljs.test/are [thrown? thrown-with-msg?])
+                                         (clojure.test/is [thrown? thrown-with-msg?])
+                                         (cljs.test/is [thrown? thrown-with-msg?])]}
+           :unresolved-namespace {:level :warning
+                                  :exclude [#_foo.bar
+                                               ;; for example: foo.bar is always loaded in a user profile
+                                            ]}
+           :misplaced-docstring {:level :warning}
+           :not-empty? {:level :warning}
+           :deprecated-var {:level :warning
+                            #_:exclude
+                            #_{foo.foo/deprecated-fn
+                                  ;; suppress warnings in the following namespaces
+                               {:namespaces [foo.bar "bar\\.*"]
+                                   ;; or in these definitions:
+                                :defs [foo.baz/allowed "foo.baz/ign\\.*"]}}}
+           :unused-referred-var {:level :warning
+                                 :exclude {#_#_taoensso.timbre [debug]}}
+           :unused-private-var {:level :warning}
+           :duplicate-require {:level :warning}
+           :refer {:level :off}
+           :refer-all {:level :off
+                       :exclude #{}}
+           :use {:level :warning}
+           :missing-else-branch {:level :warning}
+           :type-mismatch {:level :error}
+           :missing-docstring {:level :off}
+           :consistent-alias {:level :warning
+                                 ;; warn when alias for clojure.string is
+                                 ;; different from str
+                              :aliases {#_clojure.string #_str}}
+           :unused-import {:level :warning}
+           :single-operand-comparison {:level :warning}
+           :single-key-in {:level :off}
+           :missing-clause-in-try {:level :warning}
+           :missing-body-in-when {:level :warning}}
+ :lint-as {cats.core/->= clojure.core/->
+           cats.core/->>= clojure.core/->>
+           rewrite-clj.custom-zipper.core/defn-switchable clojure.core/defn
+           clojure.core.async/go-loop clojure.core/loop
+           clojure.test.check.generators/let clojure.core/let
+           cljs.core.async/go-loop clojure.core/loop
+           cljs.core.async.macros/go-loop clojure.core/loop
+           schema.core/defschema clojure.core/def
+           compojure.core/defroutes clojure.core/def
+           compojure.core/let-routes clojure.core/let}
+ :output {:format :text ;; or :edn
+          :summary true ;; outputs summary at end, only applicable to output :text
+             ;; outputs analyzed var definitions and usages of them
+          :analysis false
+             ;; set to truthy to print progress while linting, only applicable to output :text
+          :progress false
+             ;; output can be filtered and removed by regex on filename. empty options leave the output untouched.
+          :include-files [] #_["^src" "^test"]
+          :exclude-files [] #_["^cljs/core"]
+             ;; the output pattern can be altered using a template. use {{LEVEL}} to print the level in capitals.
+             ;; the default template looks like this:
+             ;; :pattern "{{filename}}:{{row}}:{{col}}: {{level}}: {{message}}"
+          :canonical-paths false ;; set to true to see absolute file paths and jar files
+          }}

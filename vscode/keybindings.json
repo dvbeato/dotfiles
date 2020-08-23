@@ -1,8 +1,12 @@
 [
   {
     "key": "escape",
-    "command": "-calva.clearInlineResults",
-    "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && !hasOtherSuggestions && !parameterHintsVisible && !suggestWidgetVisible && editorLangId == 'clojure'"
+    "command": "-calva.clearInlineResults"
+  },
+  {
+    "key": "shift+escape",
+    "command": "calva.clearInlineResults",
+    "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && !hasOtherSuggestions && !suggestWidgetVisible && editorLangId == 'clojure'"
   },
   {
     "key": "ctrl+shift+f9",

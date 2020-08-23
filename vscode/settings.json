@@ -5,12 +5,26 @@
     "terminal.integrated.shell.linux": "/bin/zsh",
     "editor.formatOnSave": false,
     "editor.minimap.enabled": false,
-    "editor.fontFamily": "'FiraCode Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "Monaco, 'FireCode Retina', monospace",
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
-    "workbench.colorTheme": "Monokai Dimmed",
-    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Tokyo Night",
+    "window.zoomLevel": 0,
     "workbench.iconTheme": "material-icon-theme",
-    "debug.console.fontSize": 16
+    "debug.console.fontSize": 16,
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": true,
+    "calva.prettyPrintingOptions": {
+        "enabled": true,
+        "printEngine": "pprint",
+        "width": 120,
+        "maxLength": 50
+    },
+    // "calva.highlight.bracketColors": ["gray","red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+    "calva.highlight.bracketColors": ["silver","deepskyblue", "yellowgreen"],
+    "search.searchOnType": false,
+    "calva.paredit.defaultKeyMap": "original",
+    "gitlens.currentLine.enabled": false,
+    "go.lintOnSave": "off"
 }
