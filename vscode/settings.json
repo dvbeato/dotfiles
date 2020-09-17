@@ -5,12 +5,14 @@
     "terminal.integrated.shell.linux": "/bin/zsh",
     "editor.formatOnSave": false,
     "editor.minimap.enabled": false,
-    "editor.fontFamily": "Monaco, 'FireCode Retina', monospace",
+    "editor.fontFamily": "'FiraCodeNerdFontCompleteM-Retina', Monaco, monospace",
+    "terminal.integrated.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
+    "terminal.integrated.fontSize": 16,
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
     "workbench.colorTheme": "Tokyo Night",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.iconTheme": "material-icon-theme",
     "debug.console.fontSize": 16,
     "go.formatTool": "goimports",
@@ -26,5 +28,22 @@
     "search.searchOnType": false,
     "calva.paredit.defaultKeyMap": "original",
     "gitlens.currentLine.enabled": false,
-    "go.lintOnSave": "off"
+    "go.lintOnSave": "off",
+    "terminal.integrated.env.osx": {
+    
+    },
+    "calva.myLeinProfiles": [
+        "~/.lein/profiles.clj"
+    ],
+    "calva.replConnectSequences": [{
+            "name": "NuLein",
+            "cljsType":"none",
+            "projectType": "Leiningen",
+            "menuSelections": {
+                "leinProfiles": [":user",":dev", ":repl"]
+            },
+            "afterCLJReplJackInCode": ""
+        }],
+    "calva.customREPLCommandSnippets": [
+    ]
 }
