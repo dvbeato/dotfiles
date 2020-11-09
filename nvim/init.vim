@@ -17,8 +17,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
 
   " IDE like plugins
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   "#### LANG AND FRAMEWORKS
 
@@ -27,11 +27,13 @@ call plug#begin('~/.config/nvim/plugged')
 
   " clojure plugins
 
-  Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
+  "  Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
   Plug 'vim-scripts/paredit.vim'
-  Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
-  Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
+  "Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
+  "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
+  "
   Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+  Plug 'tpope/vim-salve', { 'for': 'clojure' }
 
   " ruby plugins
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -151,6 +153,8 @@ nnoremap <C-h> <C-w>h
 map <M-P> :Files<CR>
 map <M-e> :Buffers<CR>
 map <M-S-c> :Commits<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
 
 if has('gui_running')
   set guioptions-=T       " remove toolbar

@@ -11,14 +11,14 @@
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "Gruvbox Material Dark",
     "window.zoomLevel": 1,
     "workbench.iconTheme": "material-icon-theme",
     "debug.console.fontSize": 16,
     "go.formatTool": "goimports",
     "go.useLanguageServer": true,
     "calva.prettyPrintingOptions": {
-        "enabled": true,
+        "enabled": false,
         "printEngine": "pprint",
         "width": 120,
         "maxLength": 50
@@ -45,5 +45,19 @@
             "afterCLJReplJackInCode": ""
         }],
     "calva.customREPLCommandSnippets": [
-    ]
+    ],
+    "cmake.configureOnOpen": true,
+    "C_Cpp.updateChannel": "Insiders",
+    "[clojure]": {
+        "editor.defaultFormatter": "dvbeato.vscode-clojure-lsp"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.project.importHint": false
 }
