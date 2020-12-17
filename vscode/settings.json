@@ -6,13 +6,12 @@
     "editor.formatOnSave": false,
     "editor.minimap.enabled": false,
     "editor.fontFamily": "'FiraCodeNerdFontCompleteM-Retina', Monaco, monospace",
-    "terminal.integrated.fontFamily": "FiraCodeNerdFontCompleteM-Retina",
+    "terminal.integrated.fontFamily": "'FiraCodeNerdFontCompleteM-Retina', Monaco, monospace",
     "terminal.integrated.fontSize": 16,
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
-    "workbench.colorTheme": "Gruvbox Material Dark",
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "workbench.iconTheme": "material-icon-theme",
     "debug.console.fontSize": 16,
     "go.formatTool": "goimports",
@@ -59,5 +58,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "java.project.importHint": false
+    "java.project.importHint": false,
+    "window.titleBarStyle": "custom",
+    "workbench.colorTheme": "Sonokai Andromeda"
 }

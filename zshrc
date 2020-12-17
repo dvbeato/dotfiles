@@ -102,8 +102,9 @@ export VISUAL=vim
 export GOPATH="$HOME/Development/projects/go"
 export GOBIN="$GOPATH/bin"
 export LOCAL_BIN="$HOME/.local/bin"
+export HOME_BIN="$HOME/bin"
 
-export PATH=$GOBIN:/usr/local/go/bin:/usr/local/kubebuilder/bin:$LOCAL_BIN:$PATH
+export PATH=$GOBIN:/usr/local/go/bin:/usr/local/kubebuilder/bin:$LOCAL_BIN:$HOME_BIN:$PATH
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
