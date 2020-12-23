@@ -155,6 +155,7 @@ map <M-e> :Buffers<CR>
 map <M-S-c> :Commits<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 
 if has('gui_running')
   set guioptions-=T       " remove toolbar
