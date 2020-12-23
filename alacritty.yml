@@ -415,8 +415,8 @@ background_opacity: 0.97
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /usr/bin/zsh
+#shell:
+#  program: /usr/local/Cellar/zsh
 #args:
 #  - --login
 
