@@ -11,7 +11,7 @@
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -2,
     "workbench.iconTheme": "material-icon-theme",
     "debug.console.fontSize": 16,
     "go.formatTool": "goimports",
@@ -48,7 +48,7 @@
     "cmake.configureOnOpen": true,
     "C_Cpp.updateChannel": "Insiders",
     "[clojure]": {
-        "editor.defaultFormatter": "dvbeato.vscode-clojure-lsp"
+        "editor.defaultFormatter": "betterthantomorrow.calva"
     },
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -60,5 +60,5 @@
     },
     "java.project.importHint": false,
     "window.titleBarStyle": "custom",
-    "workbench.colorTheme": "Sonokai Andromeda"
+    "workbench.colorTheme": "GitHub Dark"
 }

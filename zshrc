@@ -1,6 +1,10 @@
+eval $(/opt/homebrew/bin/brew shellenv)
+
 if [ -z $TMUX ]; then;
    tmux
 fi
+
+export GPG_TTY=$(tty)
 
 export ZSH_DISABLE_COMPFIX=true
 export ZPLUG_HOME=/usr/local/opt/zplug

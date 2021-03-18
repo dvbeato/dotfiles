@@ -4,17 +4,19 @@
 call plug#begin('~/.config/nvim/plugged')
   "#### UTILITIES
   " git plugins
-"  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive'
 "  Plug 'airblade/vim-gitgutter'
 
   " misc plugins
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'stsewd/fzf-checkout.vim'
   Plug 'mileszs/ack.vim'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-surround'
+  Plug 'liuchengxu/vim-which-key'
 
   " IDE like plugins
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -45,7 +47,7 @@ call plug#begin('~/.config/nvim/plugged')
 "  Plug 'dracula/vim'
 "  Plug 'nanotech/jellybeans.vim'
   Plug 'joshdick/onedark.vim'
-"  Plug 'morhetz/gruvbox'
+  Plug 'morhetz/gruvbox'
 "  let g:gruvbox_contrast_dark='medium'
 
   " air-line plugins
@@ -116,7 +118,7 @@ call plug#end()
 syntax on                   " Enable syntax highlight
 syntax enable
 
-"colorscheme onedark
+colorscheme gruvbox
 highlight CursorLine gui=none cterm=none ctermbg=236
 highlight ExtraWhitespace ctermbg=1
 
@@ -129,6 +131,7 @@ set expandtab               " all tabs are spaces
 set autoindent
 set smartindent
 set smarttab
+set nowrap
 set encoding=utf-8
 set fileencoding=utf-8
 set linespace=0             " don't insert extra pixels between rows
@@ -144,19 +147,6 @@ set backspace=indent,eol,start
 set listchars=tab:>-,trail:.,extends:>,precedes:<
 set list
 
-" Move between panels
-nnoremap <C-k> <C-w>k
-nnoremap <C-j> <C-w>j
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
-
-map <M-P> :Files<CR>
-map <M-e> :Buffers<CR>
-map <M-S-c> :Commits<CR>
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-
 if has('gui_running')
   set guioptions-=T       " remove toolbar
   set lines=999           " full height
@@ -169,5 +159,44 @@ let NERDTreeIgnore = ['\.pyc$']
 " Close Vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-map <C-n> :NERDTreeToggle<CR>
+" Shortcuts
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+set timeoutlen=500
+
+" panels
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
+" navigation
+nmap <Leader>1  :NERDTreeToggle<CR>
+map  <Leader>o  :GFiles<CR>
+map  <Leader>ff :Files<CR>
+map  <Leader>b  :Buffers<CR>
+map  <Leader>c  :Commands<CR>
+map  <Leader>F  :Rg<CR>
+
+" exit term
+tnoremap <ESC><ESC> <C-\><C-N>
+
+" VIMFile
+nmap <silent> <leader>rvf :source $MYVIMRC<CR>
+nmap <silent> <leader>evf :edit! $MYVIMRC<CR>
+
+" Git
+nmap <Leader>g :Git<CR>
+nmap <Leader>gb :Gblame<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> fr <Plug>(coc-references)
+
+" Delete without copy
+nnoremap x "_x
+nnoremap X "_X
+vnoremap p "_dP
 
