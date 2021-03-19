@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'liuchengxu/vim-which-key'
 
   " IDE like plugins
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   "#### LANG AND FRAMEWORKS
@@ -28,14 +27,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " clojure plugins
-
-  "  Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
-  Plug 'vim-scripts/paredit.vim'
+  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+    map  <Leader>cen  :%Eval<CR>
+    map  <Leader>crt  :RunTests<CR>
+  Plug 'clojure-vim/clojure.vim', { 'for': 'clojure' }
+  Plug 'guns/vim-sexp'
+    let g:sexp_mappings = {
+      \ 'sexp_raise_list': '<M-;>',
+      \ 'sexp_indent':     '=-',
+      \ 'sexp_indent_top': '==',
+      \ }
+  "Plug 'tpope/vim-sexp-mappings-for-regular-people'
+  "Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
   "Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
   "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
-  "
-  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-  Plug 'tpope/vim-salve', { 'for': 'clojure' }
 
   " ruby plugins
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -43,44 +48,44 @@ call plug#begin('~/.config/nvim/plugged')
 
   "#### COSMETICS
   " colorschemas
-"  Plug 'arcticicestudio/nord-vim'
+  Plug 'arcticicestudio/nord-vim'
 "  Plug 'dracula/vim'
-"  Plug 'nanotech/jellybeans.vim'
+  Plug 'nanotech/jellybeans.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
-"  let g:gruvbox_contrast_dark='medium'
+    let g:gruvbox_contrast_dark='medium'
 
   " air-line plugins
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 1
 
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
+    if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
 
-  " unicode symbols
-  let g:airline_left_sep = '»'
-  let g:airline_left_sep = '▶'
-  let g:airline_right_sep = '«'
-  let g:airline_right_sep = '◀'
-  let g:airline_symbols.linenr = '␊'
-  let g:airline_symbols.linenr = '␤'
-  let g:airline_symbols.linenr = '¶'
-  let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.paste = 'ρ'
-  let g:airline_symbols.paste = 'Þ'
-  let g:airline_symbols.paste = '∥'
-  let g:airline_symbols.whitespace = 'Ξ'
+    " unicode symbols
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.whitespace = 'Ξ'
 
-  " airline symbols
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
+    " airline symbols
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ''
 
   Plug 'junegunn/rainbow_parentheses.vim'
     let g:rainbow_active = 1
@@ -117,6 +122,7 @@ call plug#end()
 
 syntax on                   " Enable syntax highlight
 syntax enable
+filetype plugin indent on
 
 colorscheme gruvbox
 highlight CursorLine gui=none cterm=none ctermbg=236
@@ -178,7 +184,7 @@ nmap <Leader>1  :NERDTreeToggle<CR>
 map  <Leader>o  :GFiles<CR>
 map  <Leader>ff :Files<CR>
 map  <Leader>b  :Buffers<CR>
-map  <Leader>c  :Commands<CR>
+map  <Leader>C  :Commands<CR>
 map  <Leader>F  :Rg<CR>
 
 " exit term
@@ -195,8 +201,13 @@ nmap <Leader>gb :Gblame<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> fr <Plug>(coc-references)
 
+
 " Delete without copy
 nnoremap x "_x
 nnoremap X "_X
 vnoremap p "_dP
 
+"TODO
+"fix <S-j>, it's being used by paredit and I'd like to use it as join lines
+"learn how to scroll down without new lines
+"learn how to add new line and keep parentheses as first char
