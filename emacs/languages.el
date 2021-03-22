@@ -1,4 +1,16 @@
-;; File dedicate to configure packages and setups optmized for clojure development
+;; -------------- CLOJURE -------------------------
+(use-package clojure-mode
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'paredit-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (evil-define-key 'normal 'clojure-mode-map
+    (kbd "<leader>cj") 'cider-jack-in
+    (kbd "<leader>ceb") 'cider-eval-buffer
+    (kbd "<leader>ces") 'cider-eval-last-sexp
+    (kbd "<leader>ctn") 'cider-test-run-ns-tests
+    (kbd "<leader>ctr") 'cider-test-run-test
+    ))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -33,12 +45,6 @@
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode))
 
-(use-package clojure-mode
-  :ensure t
-  :config
-  (add-hook 'clojure-mode-hook #'paredit-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
-
 (use-package lsp-mode
   :ensure t
   :hook ((clojure-mode . lsp)
@@ -55,4 +61,36 @@
                clojurex-mode))
      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
   (setq lsp-clojure-server-command '("bash" "-c" "clojure-lsp") ;; Optional: In case `clojure-lsp` is not in your PATH
-        lsp-enable-indentation nil))
+        lsp-enable-indentation nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-enable-file-watchers t
+        lsp-file-watch-threshold 50000
+        ))
+
+;; -------------- GO-LANG -------------------------
+(use-package go-mode
+  :ensure t
+  :bind
+  (("M-*" . godef-jump)
+   ("M-." . pop-tag-mark))
+  :preface
+  (defun my-go-mode-hook ()
+    (if (not (string-match "go" compile-command))
+        (set (make-local-variable 'compile-command)
+             "go build -v && go test -v && go vet")))
+  :hook (go-mode . my-go-mode-hook)
+  :init
+  (add-hook 'before-save-hook 'gofmt-before-save))
+
+(use-package go-autocomplete
+  :ensure t)
+
+;; -------------- General Files Support -------------------------
+(use-package markdown-mode
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
+
+(use-package docker-compose-mode
+  :ensure t)

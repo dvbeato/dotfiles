@@ -5,7 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
   "#### UTILITIES
   " git plugins
   Plug 'tpope/vim-fugitive'
-"  Plug 'airblade/vim-gitgutter'
+  Plug 'airblade/vim-gitgutter'
 
   " misc plugins
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -31,12 +31,19 @@ call plug#begin('~/.config/nvim/plugged')
     map  <Leader>cen  :%Eval<CR>
     map  <Leader>crt  :RunTests<CR>
   Plug 'clojure-vim/clojure.vim', { 'for': 'clojure' }
+  let g:clojure_syntax_keywords = {
+        \'clojureMacro': ["schema.core/def"],
+        \'clojureFunc': ["schema.core/def"],
+        \}
   Plug 'guns/vim-sexp'
     let g:sexp_mappings = {
       \ 'sexp_raise_list': '<M-;>',
       \ 'sexp_indent':     '=-',
       \ 'sexp_indent_top': '==',
       \ }
+
+  Plug 'guns/vim-clojure-highlight'
+
   "Plug 'tpope/vim-sexp-mappings-for-regular-people'
   "Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
   "Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
@@ -48,6 +55,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   "#### COSMETICS
   " colorschemas
+  Plug 'chriskempson/base16-vim'
+  let base16colorspace=256  " Access colors present in 256 colorspace
   Plug 'arcticicestudio/nord-vim'
 "  Plug 'dracula/vim'
   Plug 'nanotech/jellybeans.vim'
@@ -124,7 +133,7 @@ syntax on                   " Enable syntax highlight
 syntax enable
 filetype plugin indent on
 
-colorscheme gruvbox
+colorscheme default
 highlight CursorLine gui=none cterm=none ctermbg=236
 highlight ExtraWhitespace ctermbg=1
 
@@ -136,7 +145,7 @@ set shiftwidth=2
 set expandtab               " all tabs are spaces
 set autoindent
 set smartindent
-set smarttab
+se smarttab
 set nowrap
 set encoding=utf-8
 set fileencoding=utf-8
