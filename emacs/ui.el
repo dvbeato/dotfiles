@@ -1,4 +1,3 @@
-
 (global-auto-revert-mode 1)
 (global-hl-line-mode t)
 (global-linum-mode t)
@@ -10,6 +9,8 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 (setq show-paren-mode t)
+(setq line-spacing 3)
 (set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (savehist-mode)
+(global-set-key (kbd "<escape><escape>") 'keyboard-escape-quit)

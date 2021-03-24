@@ -8,10 +8,12 @@
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
 
-(use-package base16-theme
+(use-package doom-themes
     :ensure t
     :config
-    (load-theme 'base16-tomorrow-night t)
+    (load-theme 'doom-tomorrow-night t)
+    (setq doom-themes-treemacs-theme "doom-colors")
+    (doom-themes-treemacs-config)
     (doom-themes-org-config))
 
 (use-package exec-path-from-shell

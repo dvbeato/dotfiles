@@ -10,10 +10,16 @@
   (evil-ex-define-cmd "W" 'evil-write-all)
  (evil-set-leader 'normal (kbd "SPC"))
  (evil-define-key 'normal 'global
+   (kbd "C-w") 'evil-window-next 
+   (kbd "C-k") 'evil-window-up 
+   (kbd "C-j") 'evil-window-down 
+   (kbd "C-h") 'evil-window-left 
+   (kbd "C-l") 'evil-window-right 
    (kbd "<leader>ps") 'helm-projectile-switch-project
    (kbd "<leader>po") 'helm-projectile-find-file
+   (kbd "<leader>pf") 'helm-projectile-rg
    (kbd "<leader>bl") 'helm-buffers-list
-   ))
+   (kbd "<leader><SPC>") 'helm-M-x))
 
 (use-package evil-collection
   :after evil
@@ -26,7 +32,7 @@
   :config
   (evil-define-key 'normal 'magit-mode-map
     (kbd "<leader>gs") 'magit-status
-   ))
+    (kbd "<leader>gc") 'magit-branch-checkout))
 
 (use-package ag
   :ensure t)
@@ -42,6 +48,18 @@
 (use-package all-the-icons
   :ensure t)
 
+(use-package treemacs
+  :ensure t
+  :config
+  (evil-define-key 'normal 'magit-mode-map
+    (kbd "<leader>1") 'treemacs)
+  (setq treemacs-width 28)
+  (treemacs-resize-icons 16)
+  (add-hook 'treemacs-mode-hook (lambda () (text-scale-decrease 1))))
+
+(use-package treemacs-all-the-icons
+  :after treemacs)
+
 (use-package company
   :ensure t
   :config
@@ -52,8 +70,7 @@
 (use-package helm
   :ensure t
   :bind
-  (("M-x" . helm-M-x)
-   ("M-e" . helm-buffers-list))
+  (("M-x" . helm-M-x))
   :init
   (setq helm-M-x-fuzzy-match t
         helm-mode-fuzzy-match t
@@ -73,9 +90,7 @@
   (helm-mode t))
 
 (use-package helm-ag
-  :ensure t
-  :bind
-  (("M-#" . helm-ag-project-root)))
+  :ensure t)
 
 (use-package projectile
   :ensure t
@@ -86,9 +101,6 @@
 
 (use-package helm-projectile
   :ensure t
-  :bind
-  (("M-O" . helm-projectile-find-file)
-   ("M-P" . helm-projectile-switch-project))
   :config
   (helm-projectile-on))
 
@@ -109,14 +121,16 @@
         powerline-display-buffer-size -1
         powerline-height 25))
 
-(use-package diminish
-  :ensure t)
-
 (use-package spaceline
   :ensure t
   :config
   (spaceline-spacemacs-theme)
+  (spaceline-toggle-minor-modes-off)
   (spaceline-helm-mode))
+
+(use-package spaceline-all-the-icons
+  :after spaceline
+  (spaceline-all-the-icons-theme))
 
 (use-package org
   :config

@@ -58,7 +58,9 @@
   (dolist (m '(clojure-mode
                clojurec-mode
                clojurescript-mode
-               clojurex-mode))
+               clojurex-mode
+               go-mode
+               ))
      (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
   (setq lsp-clojure-server-command '("bash" "-c" "clojure-lsp") ;; Optional: In case `clojure-lsp` is not in your PATH
         lsp-enable-indentation nil
@@ -78,7 +80,9 @@
     (if (not (string-match "go" compile-command))
         (set (make-local-variable 'compile-command)
              "go build -v && go test -v && go vet")))
-  :hook (go-mode . my-go-mode-hook)
+  :hook ((go-mode . lsp-deferred)
+         (before-save . lsp-format-buffer)
+         (before-save . lsp-organize-imports))
   :init
   (add-hook 'before-save-hook 'gofmt-before-save))
 
@@ -90,6 +94,9 @@
   :ensure t)
 
 (use-package yaml-mode
+  :ensure t)
+
+(use-package dockerfile-mode
   :ensure t)
 
 (use-package docker-compose-mode
