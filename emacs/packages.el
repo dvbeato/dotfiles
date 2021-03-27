@@ -1,8 +1,17 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
+
 (use-package evil
   :ensure t
+  :after which-key
   :init
   (setq evil-want-keybinding nil)
   (evil-mode t)
@@ -10,16 +19,37 @@
   (evil-ex-define-cmd "W" 'evil-write-all)
  (evil-set-leader 'normal (kbd "SPC"))
  (evil-define-key 'normal 'global
-   (kbd "C-w") 'evil-window-next 
    (kbd "C-k") 'evil-window-up 
    (kbd "C-j") 'evil-window-down 
    (kbd "C-h") 'evil-window-left 
    (kbd "C-l") 'evil-window-right 
-   (kbd "<leader>ps") 'helm-projectile-switch-project
-   (kbd "<leader>po") 'helm-projectile-find-file
-   (kbd "<leader>pf") 'helm-projectile-rg
-   (kbd "<leader>bl") 'helm-buffers-list
-   (kbd "<leader><SPC>") 'helm-M-x))
+   (kbd "C-S-k") 'evil-window-move-very-top 
+   (kbd "C-S-j") 'evil-window-move-very-bottom 
+   (kbd "C-S-h") 'evil-window-move-far-left 
+   (kbd "C-S-l") 'evil-window-move-far-right 
+   (kbd "C-S-<up>") 'evil-window-increase-height 
+   (kbd "C-S-<down>") 'evil-window-decrease-height 
+   (kbd "C-S-<left>") 'evil-window-decrease-width 
+   (kbd "C-S-<right>") 'evil-window-increase-width 
+
+   (kbd "<leader>ps") 'helm-projectile-switch-project  
+   (kbd "<leader>po") 'helm-projectile-find-file 
+   (kbd "<leader>pf") 'helm-projectile-rg 
+    
+   (kbd "<leader>bl") 'helm-buffers-list 
+   (kbd "<leader>be") 'eval-buffer 
+
+   (kbd "<leader><SPC>") 'helm-M-x)
+
+   (which-key-add-key-based-replacements "<leader>p" "projects") 
+   (which-key-add-key-based-replacements "<leader>ps" "switch project")
+   (which-key-add-key-based-replacements "<leader>po" "open project file")
+   (which-key-add-key-based-replacements "<leader>pf" "find in project")
+
+   (which-key-add-key-based-replacements "<leader>b" "buffers")
+   (which-key-add-key-based-replacements "<leader>bl" "buffer list")
+   (which-key-add-key-based-replacements "<leader>be" "eval buffer")
+ )
 
 (use-package evil-collection
   :after evil
@@ -36,14 +66,6 @@
 
 (use-package ag
   :ensure t)
-
-(use-package which-key
-  :ensure t
-  :init
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
-  :config
-  (which-key-mode 1))
 
 (use-package all-the-icons
   :ensure t)
@@ -66,6 +88,9 @@
   (global-company-mode)
   (setq company-selection-wrap-around t)
   (define-key company-active-map [tab] 'company-complete))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 (use-package helm
   :ensure t
@@ -103,9 +128,6 @@
   :ensure t
   :config
   (helm-projectile-on))
-
-(use-package auto-complete
-  :ensure t)
 
 (use-package whitespace
   :config
