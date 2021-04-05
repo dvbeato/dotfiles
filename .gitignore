@@ -16,3 +16,5 @@ emacs/transient/
 emacs/ac-comphist.dat
 .netrwhist
 .DS_Store
+emacs/custom.el
+emacs/.lsp*

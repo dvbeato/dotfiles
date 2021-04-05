@@ -16,40 +16,41 @@
   (setq evil-want-keybinding nil)
   (evil-mode t)
   :config
+
   (evil-ex-define-cmd "W" 'evil-write-all)
- (evil-set-leader 'normal (kbd "SPC"))
- (evil-define-key 'normal 'global
-   (kbd "C-k") 'evil-window-up 
-   (kbd "C-j") 'evil-window-down 
-   (kbd "C-h") 'evil-window-left 
-   (kbd "C-l") 'evil-window-right 
-   (kbd "C-S-k") 'evil-window-move-very-top 
-   (kbd "C-S-j") 'evil-window-move-very-bottom 
-   (kbd "C-S-h") 'evil-window-move-far-left 
-   (kbd "C-S-l") 'evil-window-move-far-right 
-   (kbd "C-S-<up>") 'evil-window-increase-height 
-   (kbd "C-S-<down>") 'evil-window-decrease-height 
-   (kbd "C-S-<left>") 'evil-window-decrease-width 
-   (kbd "C-S-<right>") 'evil-window-increase-width 
+  (evil-set-leader 'normal (kbd "SPC"))
 
-   (kbd "<leader>ps") 'helm-projectile-switch-project  
-   (kbd "<leader>po") 'helm-projectile-find-file 
-   (kbd "<leader>pf") 'helm-projectile-rg 
+  (evil-define-key nil 'global
+    (kbd "<leader><SPC>") 'helm-M-x
+    (kbd "<leader>ps") 'helm-projectile-switch-project  
+    (kbd "<leader>po") 'helm-projectile-find-file 
+    (kbd "<leader>pf") 'helm-projectile-rg 
     
-   (kbd "<leader>bl") 'helm-buffers-list 
-   (kbd "<leader>be") 'eval-buffer 
+    (kbd "<leader>bl") 'helm-buffers-list 
+    (kbd "<leader>be") 'eval-buffer)
 
-   (kbd "<leader><SPC>") 'helm-M-x)
+  (which-key-add-key-based-replacements "<leader>p" "projects") 
+  (which-key-add-key-based-replacements "<leader>ps" "switch project")
+  (which-key-add-key-based-replacements "<leader>po" "open project file")
+  (which-key-add-key-based-replacements "<leader>pf" "find in project")
 
-   (which-key-add-key-based-replacements "<leader>p" "projects") 
-   (which-key-add-key-based-replacements "<leader>ps" "switch project")
-   (which-key-add-key-based-replacements "<leader>po" "open project file")
-   (which-key-add-key-based-replacements "<leader>pf" "find in project")
+  (which-key-add-key-based-replacements "<leader>b" "buffers")
+  (which-key-add-key-based-replacements "<leader>bl" "buffer list")
+  (which-key-add-key-based-replacements "<leader>be" "eval buffer")
 
-   (which-key-add-key-based-replacements "<leader>b" "buffers")
-   (which-key-add-key-based-replacements "<leader>bl" "buffer list")
-   (which-key-add-key-based-replacements "<leader>be" "eval buffer")
- )
+  (evil-define-key 'normal 'global
+    (kbd "C-k") 'evil-window-up 
+    (kbd "C-j") 'evil-window-down 
+    (kbd "C-h") 'evil-window-left 
+    (kbd "C-l") 'evil-window-right 
+    (kbd "C-S-k") 'evil-window-move-very-top 
+    (kbd "C-S-j") 'evil-window-move-very-bottom 
+    (kbd "C-S-h") 'evil-window-move-far-left 
+    (kbd "C-S-l") 'evil-window-move-far-right 
+    (kbd "C-S-<up>") 'evil-window-increase-height 
+    (kbd "C-S-<down>") 'evil-window-decrease-height 
+    (kbd "C-S-<left>") 'evil-window-decrease-width 
+    (kbd "C-S-<right>") 'evil-window-increase-width))
 
 (use-package evil-collection
   :after evil
@@ -80,7 +81,24 @@
   (add-hook 'treemacs-mode-hook (lambda () (text-scale-decrease 1))))
 
 (use-package treemacs-all-the-icons
+  :ensure t
   :after treemacs)
+
+(use-package treemacs-projectile
+  :ensure t
+  :after treemacs)
+
+(use-package doom-themes
+    :ensure t
+    :config
+    (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+          doom-themes-enable-italic nil) ; if nil, italics is universally disabled
+    (load-theme 'doom-nord-light t)
+
+    (setq doom-themes-treemacs-theme "doom-colors")
+    (doom-themes-treemacs-config)
+
+    (doom-themes-org-config))
 
 (use-package company
   :ensure t
@@ -90,6 +108,7 @@
   (define-key company-active-map [tab] 'company-complete))
 
 (use-package company-box
+  :ensure t
   :hook (company-mode . company-box-mode))
 
 (use-package helm
@@ -129,9 +148,12 @@
   :config
   (helm-projectile-on))
 
+(use-package vterm
+  :ensure t)
+
 (use-package whitespace
   :config
-  (set-face-attribute 'whitespace-space nil :background nil :foreground "gray25")
+  (set-face-attribute 'whitespace-space nil :background nil :foreground "gray")
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark)))
   (setq whitespace-line-column 320)
   (global-whitespace-mode t))
@@ -140,7 +162,7 @@
   :ensure t
   :config
   (setq powerline-default-separator 'wave
-        powerline-display-buffer-size -1
+        powerline-display-bniluffer-size -1
         powerline-height 25))
 
 (use-package spaceline

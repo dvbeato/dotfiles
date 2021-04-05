@@ -14,3 +14,6 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (savehist-mode)
 (global-set-key (kbd "<escape><escape>") 'keyboard-escape-quit)
+
+(setq tab-bar-mode t)
+(setq tab-bar-show 1)
