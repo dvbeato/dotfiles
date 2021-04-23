@@ -1,6 +1,6 @@
 (global-auto-revert-mode 1)
 (global-hl-line-mode t)
-(global-linum-mode t)
+;;(global-linum-mode t)
 ;;(global-whitespace-mode t)
 (setq column-number-mode t)
 (setq size-indication-mode t)
@@ -17,3 +17,5 @@
 
 (setq tab-bar-mode t)
 (setq tab-bar-show 1)
+
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)

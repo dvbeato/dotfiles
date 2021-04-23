@@ -11,7 +11,6 @@
     "editor.wordWrapColumn": 120,
     "files.autoSave": "afterDelay",
     "editor.renderWhitespace": "all",
-    "window.zoomLevel": -2,
     "workbench.iconTheme": "material-icon-theme",
     "debug.console.fontSize": 16,
     "go.formatTool": "goimports",
@@ -60,5 +59,6 @@
     },
     "java.project.importHint": false,
     "window.titleBarStyle": "custom",
-    "workbench.colorTheme": "Tomorrow Night"
+    "workbench.colorTheme": "Base16 Dark Embers",
+    "window.zoomLevel": -1
 }

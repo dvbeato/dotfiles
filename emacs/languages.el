@@ -80,18 +80,28 @@
     (if (not (string-match "go" compile-command))
         (set (make-local-variable 'compile-command)
              "go build -v && go test -v && go vet")))
-  :hook ((go-mode . lsp-deferred)
-         (before-save . lsp-format-buffer)
-         (before-save . lsp-organize-imports))
-  :init
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  ;; :hook ((go-mode . lsp-deferred)
+  ;;        (before-save . lsp-format-buffer)
+  ;;        (before-save . lsp-organize-imports))
+ ;; :init
+ ;; (add-hook 'before-save-hook 'gofmt-before-save)
+  )
 
 (use-package go-autocomplete
   :ensure t)
 
 ;; -------------- General Files Support -------------------------
+
+;; Or using hooks
+(use-package grip-mode
+  :ensure t
+  :hook ((markdown-mode org-mode) . grip-mode)
+  :config
+  (setq grip-preview-use-webkit t))
+
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :init (setq markdown-command "grip"))
 
 (use-package yaml-mode
   :ensure t)

@@ -88,12 +88,25 @@
   :ensure t
   :after treemacs)
 
+(use-package treemacs-evil
+  :ensure t
+  :after treemacs
+  :config
+  (evil-set-leader 'treemacs (kbd "SPC"))
+  (evil-define-key 'treemacs treemacs-mode-map
+    (kbd "C-k") 'evil-window-up 
+    (kbd "C-j") 'evil-window-down 
+    (kbd "C-h") 'evil-window-left 
+    (kbd "C-l") 'evil-window-right
+    (kbd "<leader>nd") 'treemacs-create-dir
+    (kbd "<leader>nf") 'treemacs-create-file))
+
 (use-package doom-themes
     :ensure t
     :config
     (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
           doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-    (load-theme 'doom-nord-light t)
+    (load-theme 'doom-wilmersdorf t)
 
     (setq doom-themes-treemacs-theme "doom-colors")
     (doom-themes-treemacs-config)
@@ -129,7 +142,8 @@
         helm-move-to-line-cycle-in-source t
         helm-echo-input-in-header-line t
         helm-autoresize-max-height 0
-        helm-autoresize-min-height 20)
+        helm-autoresize-min-height 20
+        helm-boring-buffer-regexp-list (list (rx "*" (one-or-more anything) "*")))
   :config
   (helm-mode t))
 
@@ -153,7 +167,7 @@
 
 (use-package whitespace
   :config
-  (set-face-attribute 'whitespace-space nil :background nil :foreground "gray")
+  (set-face-attribute 'whitespace-space nil :background nil :foreground "gray30")
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark)))
   (setq whitespace-line-column 320)
   (global-whitespace-mode t))

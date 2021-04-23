@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'liuchengxu/vim-which-key'
 
+  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " IDE like plugins
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
