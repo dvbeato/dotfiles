@@ -1,3 +1,4 @@
+(require 'user-keybinds)
 (require 'use-package)
 (setq use-package-verbose t)
 
@@ -15,42 +16,9 @@
   :init
   (setq evil-want-keybinding nil)
   (evil-mode t)
+  (user-kb/evil)
   :config
-
-  (evil-ex-define-cmd "W" 'evil-write-all)
-  (evil-set-leader 'normal (kbd "SPC"))
-
-  (evil-define-key nil 'global
-    (kbd "<leader><SPC>") 'helm-M-x
-    (kbd "<leader>ps") 'helm-projectile-switch-project  
-    (kbd "<leader>po") 'helm-projectile-find-file 
-    (kbd "<leader>pf") 'helm-projectile-rg 
-    
-    (kbd "<leader>bl") 'helm-buffers-list 
-    (kbd "<leader>be") 'eval-buffer)
-
-  (which-key-add-key-based-replacements "<leader>p" "projects") 
-  (which-key-add-key-based-replacements "<leader>ps" "switch project")
-  (which-key-add-key-based-replacements "<leader>po" "open project file")
-  (which-key-add-key-based-replacements "<leader>pf" "find in project")
-
-  (which-key-add-key-based-replacements "<leader>b" "buffers")
-  (which-key-add-key-based-replacements "<leader>bl" "buffer list")
-  (which-key-add-key-based-replacements "<leader>be" "eval buffer")
-
-  (evil-define-key 'normal 'global
-    (kbd "C-k") 'evil-window-up 
-    (kbd "C-j") 'evil-window-down 
-    (kbd "C-h") 'evil-window-left 
-    (kbd "C-l") 'evil-window-right 
-    (kbd "C-S-k") 'evil-window-move-very-top 
-    (kbd "C-S-j") 'evil-window-move-very-bottom 
-    (kbd "C-S-h") 'evil-window-move-far-left 
-    (kbd "C-S-l") 'evil-window-move-far-right 
-    (kbd "C-S-<up>") 'evil-window-increase-height 
-    (kbd "C-S-<down>") 'evil-window-decrease-height 
-    (kbd "C-S-<left>") 'evil-window-decrease-width 
-    (kbd "C-S-<right>") 'evil-window-increase-width))
+  (evil-ex-define-cmd "W" 'evil-write-all))
 
 (use-package evil-collection
   :after evil
@@ -60,10 +28,9 @@
 
 (use-package magit
   :ensure t
-  :config
-  (evil-define-key 'normal 'magit-mode-map
-    (kbd "<leader>gs") 'magit-status
-    (kbd "<leader>gc") 'magit-branch-checkout))
+  :init
+  (user-kb/magit)
+  :config)
 
 (use-package ag
   :ensure t)
@@ -73,12 +40,13 @@
 
 (use-package treemacs
   :ensure t
+  :after evil
   :config
-  (evil-define-key 'normal 'magit-mode-map
-    (kbd "<leader>1") 'treemacs)
   (setq treemacs-width 28)
   (treemacs-resize-icons 16)
-  (add-hook 'treemacs-mode-hook (lambda () (text-scale-decrease 1))))
+  (add-hook 'treemacs-mode-hook (lambda ()
+                                  (treemacs-display-current-project-exclusively)
+                                  (text-scale-decrease 1))))
 
 (use-package treemacs-all-the-icons
   :ensure t
@@ -92,21 +60,14 @@
   :ensure t
   :after treemacs
   :config
-  (evil-set-leader 'treemacs (kbd "SPC"))
-  (evil-define-key 'treemacs treemacs-mode-map
-    (kbd "C-k") 'evil-window-up 
-    (kbd "C-j") 'evil-window-down 
-    (kbd "C-h") 'evil-window-left 
-    (kbd "C-l") 'evil-window-right
-    (kbd "<leader>nd") 'treemacs-create-dir
-    (kbd "<leader>nf") 'treemacs-create-file))
+  (user-kb/treemacs))
 
 (use-package doom-themes
     :ensure t
     :config
     (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
           doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-    (load-theme 'doom-wilmersdorf t)
+    (load-theme 'doom-oceanic-next t)
 
     (setq doom-themes-treemacs-theme "doom-colors")
     (doom-themes-treemacs-config)
@@ -143,7 +104,7 @@
         helm-echo-input-in-header-line t
         helm-autoresize-max-height 0
         helm-autoresize-min-height 20
-        helm-boring-buffer-regexp-list (list (rx "*" (one-or-more anything) "*")))
+        helm-boring-buffer-regexp-list '())
   :config
   (helm-mode t))
 
@@ -172,23 +133,41 @@
   (setq whitespace-line-column 320)
   (global-whitespace-mode t))
 
-(use-package powerline
-  :ensure t
-  :config
-  (setq powerline-default-separator 'wave
-        powerline-display-bniluffer-size -1
-        powerline-height 25))
+;; (use-package window-purpose
+;;   :ensure t
+;;   :config
+;;   (setq purpose-user-mode-purposes
+;;         '((cider-repl-mode . repl)
+;;           (treemacs-mode . files)))
+;;   (setq purpose-user-regexp-purposes
+;;         '((".*repl.*" . repl)))
+;;   (purpose-compile-user-configuration))
 
-(use-package spaceline
-  :ensure t
+(use-package centaur-tabs
+  :demand
   :config
-  (spaceline-spacemacs-theme)
-  (spaceline-toggle-minor-modes-off)
-  (spaceline-helm-mode))
+  (centaur-tabs-mode t)
+  :bind
+  ("C-<prior>" . centaur-tabs-backward)
+  ("C-<next>" . centaur-tabs-forward))
 
-(use-package spaceline-all-the-icons
-  :after spaceline
-  (spaceline-all-the-icons-theme))
+;; (use-package powerline
+;;   :ensure t
+;;   :config
+;;   (setq powerline-default-separator 'wave
+;;         powerline-display-bniluffer-size -1
+;;         powerline-height 25))
+
+;; (use-package spaceline
+;;   :ensure t
+;;   :config
+;;   (spaceline-spacemacs-theme)
+;;   (spaceline-toggle-minor-modes-off)
+;;   (spaceline-helm-mode))
+
+;; (use-package spaceline-all-the-icons
+;;   :after spaceline
+;;   (spaceline-all-the-icons-theme))
 
 (use-package org
   :config

@@ -3,14 +3,7 @@
   :ensure t
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (evil-define-key 'normal 'clojure-mode-map
-    (kbd "<leader>cj") 'cider-jack-in
-    (kbd "<leader>ceb") 'cider-eval-buffer
-    (kbd "<leader>ces") 'cider-eval-last-sexp
-    (kbd "<leader>ctn") 'cider-test-run-ns-tests
-    (kbd "<leader>ctr") 'cider-test-run-test
-    ))
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -36,9 +29,6 @@
 
 (use-package cider
   :ensure t
-  :bind
-  (("M-b" . cider-find-var)
-   ("M-s-<left>" . cider-pop-back))
   :config
   (setq nrepl-log-messages t)
   (setq cider-prompt-for-symbol nil)

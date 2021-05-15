@@ -18,3 +18,5 @@ emacs/ac-comphist.dat
 .DS_Store
 emacs/custom.el
 emacs/.lsp*
+.cache
+emacs/recentf

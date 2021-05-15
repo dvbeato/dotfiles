@@ -59,6 +59,7 @@
     },
     "java.project.importHint": false,
     "window.titleBarStyle": "custom",
-    "workbench.colorTheme": "Base16 Dark Embers",
-    "window.zoomLevel": -1
+    "workbench.colorTheme": "Base16 Dark Twilight",
+    "window.zoomLevel": -1,
+    "extensions.ignoreRecommendations": true
 }

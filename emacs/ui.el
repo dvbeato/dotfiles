@@ -9,7 +9,7 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 (setq show-paren-mode t)
-(setq line-spacing 3)
+(setq line-spacing 4)
 (set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (savehist-mode)
@@ -19,3 +19,5 @@
 (setq tab-bar-show 1)
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+

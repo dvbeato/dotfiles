@@ -117,6 +117,7 @@ export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
 
 # Mac only
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias emacs='open -a Emacs'
   alias idea='open -a "IntelliJ IDEA CE"'
 fi
 
@@ -194,3 +195,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

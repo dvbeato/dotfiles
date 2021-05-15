@@ -28,6 +28,7 @@
 
 (setq create-lockfiles nil)
 
+(blessed/load-if-exists "~/.emacs.d/keybinds.el")
 (blessed/load-if-exists "~/.emacs.d/ui.el")
 (blessed/load-if-exists "~/.emacs.d/packages.el")
 (blessed/load-if-exists "~/.emacs.d/languages.el")
