@@ -100,14 +100,17 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 export VISUAL=vim
 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
+
 # export GOLANG envvars
 # export GOPATH=$HOME/go
 # export GOROOT="$HOME/.asdf/installs/golang/1.12.5/go"
+#
 export GOPATH="$HOME/Development/projects/go"
 export GOBIN="$GOPATH/bin"
 export LOCAL_BIN="$HOME/.local/bin"
 export HOME_BIN="$HOME/bin"
-export PATH=$GOBIN:/usr/local/go/bin:/usr/local/kubebuilder/bin:$LOCAL_BIN:$HOME_BIN:$PATH
+export PATH=$GOBIN:/usr/local/go/bin:/usr/local/kubebuilder/bin:$LOCAL_BIN:$HOME_BIN:$JAVA_HOME/bin:$PATH
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH

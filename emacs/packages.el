@@ -158,8 +158,10 @@
   (centaur-tabs-headline-match)
   (centaur-tabs-mode t)
   :bind
-  ("s-<left>" . centaur-tabs-backward)
-  ("s-<right>" . centaur-tabs-forward))
+  ("s-H" . centaur-tabs-backward)
+  ("s-L" . centaur-tabs-forward)
+  ("s-t" . centaur-tabs--create-new-tab)
+  ("s-w" . centaur-tabs--kill-this-buffer-dont-ask))
 
 (use-package powerline
   :ensure t
@@ -248,6 +250,7 @@
         lsp-headerline-breadcrumb-enable nil
         lsp-enable-file-watchers t
         lsp-file-watch-threshold 50000
+        lsp-lens-enable t
         ))
 
 ;; -------------- GO-LANG -------------------------
