@@ -26,6 +26,11 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 (setq create-lockfiles nil)
 
 (blessed/load-if-exists "~/.emacs.d/keybinds.el")

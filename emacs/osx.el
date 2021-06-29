@@ -9,7 +9,4 @@
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
 
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (exec-path-from-shell-initialize))
+

@@ -135,7 +135,7 @@ syntax enable
 filetype plugin indent on
 
 colorscheme default
-highlight CursorLine gui=none cterm=none ctermbg=236
+highlight CursorLine gui=none cterm=none ctermbg=0
 highlight ExtraWhitespace ctermbg=1
 
 set clipboard+=unnamedplus

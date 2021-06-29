@@ -1,5 +1,3 @@
-eval $(/opt/homebrew/bin/brew shellenv)
-
 if [ -z $TMUX ]; then;
    tmux
 fi
@@ -100,28 +98,35 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 export VISUAL=vim
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
-
-# export GOLANG envvars
-# export GOPATH=$HOME/go
-# export GOROOT="$HOME/.asdf/installs/golang/1.12.5/go"
-#
-export GOPATH="$HOME/Development/projects/go"
-export GOBIN="$GOPATH/bin"
-export LOCAL_BIN="$HOME/.local/bin"
-export HOME_BIN="$HOME/bin"
-export PATH=$GOBIN:/usr/local/go/bin:/usr/local/kubebuilder/bin:$LOCAL_BIN:$HOME_BIN:$JAVA_HOME/bin:$PATH
-
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Mac only
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+
   alias emacs='open -a Emacs'
   alias idea='open -a "IntelliJ IDEA CE"'
+
+  # Android Setup
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
+
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+# LINUX only
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  alias ls='ls --color=auto'
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
+  alias open='xdg-open'
+
+ # export JAVA_HOME="/home/linuxbrew/.linuxbrew/bin/java"
+  export APPS_HOME=$HOME/Applications
+  export BREW="/home/linuxbrew/.linuxbrew/bin"
+  export PATH="$JAVA_HOME/bin:$BREW:$PATH"
 fi
 
 # aliases
@@ -158,18 +163,6 @@ alias ll='ls -lhap'
 
 if [ -x "$(command -v nvim)" ]; then
   alias vim='nvim'
-fi
-
-# LINUX only
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  alias ls='ls --color=auto'
-  alias pbcopy='xclip -selection clipboard'
-  alias pbpaste='xclip -selection clipboard -o'
-  alias open='xdg-open'
-
-  export APPS_HOME=$HOME/Applications
-  export BREW=/home/linuxbrew/.linuxbrew/bin
-  export PATH="$BREW:$PATH"
 fi
 
 # functions

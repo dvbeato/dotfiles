@@ -67,7 +67,7 @@
     :config
     (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
           doom-themes-enable-italic nil) ; if nil, italics is universally disabled
-    (load-theme 'doom-oceanic-next t)
+    (load-theme 'doom-nord t)
 
     (setq doom-themes-treemacs-theme "doom-colors")
     (doom-themes-treemacs-config)
@@ -123,8 +123,8 @@
   :config
   (helm-projectile-on))
 
-(use-package vterm
-  :ensure t)
+;; (use-package vterm
+;;   :ensure t)
 
 (use-package whitespace
   :config

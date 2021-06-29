@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+# env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  # TERM: alacritty
 
 window:
   # Window dimensions (changes require restart)
@@ -49,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: none
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -76,7 +76,7 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  gtk_theme_variant: dark
 
 #scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -98,6 +98,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: FiraCode Nerd Font Mono
+    # family: Monaco for Powerline
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -136,7 +137,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -204,64 +205,113 @@ font:
 #    cyan:    '#54ced6'
 #    white:   '#282a2e'
 
-
 colors:
-  # Default colors
   primary:
-    background: '#222222'
-    foreground: '0xabb2bf'
-
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '0x9a9a9a'
-    bright_foreground: '0xe6efff'
-
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor. If these are unset,
-  # the cursor color will be the inverse of the cell color.
-  #cursor:
-  #  text: '0x000000'
-  #  cursor: '0xffffff'
-
-  # Normal colors
+    background: '#21242b'
+    # background: '#282c33'
+    foreground: '#d8dee9'
+    dim_foreground: '#a5abb6'
+  cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  vi_mode_cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  selection:
+    text: CellForeground
+    background: '#4c566a'
+  search:
+    matches:
+      foreground: CellBackground
+      background: '#88c0d0'
+    bar:
+      background: '#434c5e'
+      foreground: '#d8dee9'
   normal:
-    black:   '0x1e2127'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0x828791'
-
-  # Bright colors
+    black: '#3b4252'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#88c0d0'
+    white: '#e5e9f0'
   bright:
-    black:   '0x5c6370'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xe6efff'
-
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
+    black: '#4c566a'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#8fbcbb'
+    white: '#eceff4'
   dim:
-    black:   '0x1e2127'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0x828791'
+    black: '#373e4d'
+    red: '#94545d'
+    green: '#809575'
+    yellow: '#b29e75'
+    blue: '#68809a'
+    magenta: '#8c738c'
+    cyan: '#6d96a5'
+    white: '#aeb3bb'
+
+    #colors:
+    #  # Default colors
+    #  primary:
+    #    background: '#222222'
+    #    foreground: '0xabb2bf'
+    #
+    #    # Bright and dim foreground colors
+    #    #
+    #    # The dimmed foreground color is calculated automatically if it is not present.
+    #    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+    #    # is `false`, the normal foreground color will be used.
+    #    #dim_foreground: '0x9a9a9a'
+    #    bright_foreground: '0xe6efff'
+    #
+    #  # Cursor colors
+    #  #
+    #  # Colors which should be used to draw the terminal cursor. If these are unset,
+    #  # the cursor color will be the inverse of the cell color.
+    #  #cursor:
+    #  #  text: '0x000000'
+    #  #  cursor: '0xffffff'
+    #
+    #  # Normal colors
+    #  normal:
+    #    black:   '0x1e2127'
+    #    red:     '0xe06c75'
+    #    green:   '0x98c379'
+    #    yellow:  '0xd19a66'
+    #    blue:    '0x61afef'
+    #    magenta: '0xc678dd'
+    #    cyan:    '0x56b6c2'
+    #    white:   '0x828791'
+    #
+    #  # Bright colors
+    #  bright:
+    #    black:   '0x5c6370'
+    #    red:     '0xe06c75'
+    #    green:   '0x98c379'
+    #    yellow:  '0xd19a66'
+    #    blue:    '0x61afef'
+    #    magenta: '0xc678dd'
+    #    cyan:    '0x56b6c2'
+    #    white:   '0xe6efff'
+    #
+    #  # Dim colors
+    #  #
+    #  # If the dim colors are not set, they will be calculated automatically based
+    #  # on the `normal` colors.
+    #  dim:
+    #    black:   '0x1e2127'
+    #    red:     '0xe06c75'
+    #    green:   '0x98c379'
+    #    yellow:  '0xd19a66'
+    #    blue:    '0x61afef'
+    #    magenta: '0xc678dd'
+    #    cyan:    '0x56b6c2'
+    #    white:   '0x828791'
 
   # Indexed Colors
   #
