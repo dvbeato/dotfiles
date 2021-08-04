@@ -1,0 +1,32 @@
+- name: OSx brew setup
+  hosts: localhost
+  tasks: 
+    - name: OSx cmd tools
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - zsh
+        - git
+        - tmux
+        - ripgrep
+        - fzf
+        - htop
+        - neovim
+        - emacs-plus
+        - awscli
+        - dog
+        - nmap
+        - jq
+        - z
+    - name: Langs
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - openjdk
+        - clojure
+        - leiningen
+        - clojure-lsp-native
+        - cmake
+        - go

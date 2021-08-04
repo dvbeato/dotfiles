@@ -1,0 +1,21 @@
+- name: DevEnv setup
+  hosts: localhost
+  tasks:
+  - name: oh-my-zsh
+    shell: >
+      sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    args:
+      creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  - name: nvm
+    shell: >
+     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash 
+    args:
+      creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  - name: create symlinks
+    file:
+      src: "$HOME/.dotfiles/{{item.src}}"
+      dest: "{{ item.dest }}"
+      state: link
+    loop:
+      - { src: "zshrc", dest: "$HOME/.zshrc" }
+      - { src: "emacs", dest: "$HOME/.emacs.d" }
