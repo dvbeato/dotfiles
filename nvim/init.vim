@@ -201,11 +201,12 @@ nmap <silent> <leader>rvf :source $MYVIMRC<CR>
 nmap <silent> <leader>evf :edit! $MYVIMRC<CR>
 
 " Git
-nmap <Leader>g :Git<CR>
+nmap <Leader>gs :Git<CR>
 nmap <Leader>gb :Gblame<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> fr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references)
+nmap <Leader>rn <Plug>(coc-rename)
 
 
 " Delete without copy
