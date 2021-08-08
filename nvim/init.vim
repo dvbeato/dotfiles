@@ -7,12 +7,15 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
 
+  " tmux
+  Plug 'preservim/vimux'
+
   " misc plugins
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'stsewd/fzf-checkout.vim'
-  Plug 'mileszs/ack.vim'
+
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-surround'
@@ -28,14 +31,16 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " clojure plugins
-  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-    map  <Leader>cen  :%Eval<CR>
-    map  <Leader>crt  :RunTests<CR>
-  Plug 'clojure-vim/clojure.vim', { 'for': 'clojure' }
-  let g:clojure_syntax_keywords = {
-        \'clojureMacro': ["schema.core/def"],
-        \'clojureFunc': ["schema.core/def"],
-        \}
+  Plug 'Olical/conjure', {'tag': 'v4.22.1'}
+"  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+"    map  <Leader>cen  :%Eval<CR>
+"    map  <Leader>crt  :RunTests<CR>
+
+"  Plug 'clojure-vim/clojure.vim', { 'for': 'clojure' }
+"  let g:clojure_syntax_keywords = {
+"        \'clojureMacro': ["schema.core/def"],
+"        \'clojureFunc': ["schema.core/def"],
+"        \}
   Plug 'guns/vim-sexp'
     let g:sexp_mappings = {
       \ 'sexp_raise_list': '<M-;>',
@@ -50,16 +55,7 @@ call plug#begin('~/.config/nvim/plugged')
   "Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
   "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
 
-  " ruby plugins
-  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-  Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
-
   "#### COSMETICS
-  " colorschemas
-  Plug 'chriskempson/base16-vim'
-  let base16colorspace=256  " Access colors present in 256 colorspace
-  Plug 'arcticicestudio/nord-vim'
-"  Plug 'dracula/vim'
   Plug 'nanotech/jellybeans.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
@@ -146,7 +142,7 @@ set shiftwidth=2
 set expandtab               " all tabs are spaces
 set autoindent
 set smartindent
-se smarttab
+set smarttab
 set nowrap
 set encoding=utf-8
 set fileencoding=utf-8

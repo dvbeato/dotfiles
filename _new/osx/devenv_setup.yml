@@ -11,11 +11,15 @@
      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash 
     args:
       creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-  - name: create symlinks
+  - name: setup config files
     file:
       src: "$HOME/.dotfiles/{{item.src}}"
       dest: "{{ item.dest }}"
       state: link
     loop:
       - { src: "zshrc", dest: "$HOME/.zshrc" }
+      - { src: "oh-my-zsh/custom/themes/dvbeato.zsh-theme", dest: "$HOME/.oh-my-zsh/custom/themes/dvbeato.zsh-theme" }
       - { src: "emacs", dest: "$HOME/.emacs.d" }
+      - { src: "nvim", dest: "$HOME/.config/nvim" }
+      - { src: "tmux.conf", dest: "$HOME/.tmux.conf" }
+
