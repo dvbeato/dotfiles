@@ -10,6 +10,8 @@ call plug#begin('~/.config/nvim/plugged')
   " tmux
   Plug 'preservim/vimux'
 
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
   " misc plugins
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -130,7 +132,7 @@ syntax on                   " Enable syntax highlight
 syntax enable
 filetype plugin indent on
 
-colorscheme default
+colorscheme jellybeans
 highlight CursorLine gui=none cterm=none ctermbg=0
 highlight ExtraWhitespace ctermbg=1
 
@@ -218,3 +220,19 @@ vnoremap p "_dP
 "fix <S-j>, it's being used by paredit and I'd like to use it as join lines
 "learn how to scroll down without new lines
 "learn how to add new line and keep parentheses as first char
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
