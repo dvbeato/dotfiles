@@ -125,6 +125,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias open='xdg-open'
 
  # export JAVA_HOME="/home/linuxbrew/.linuxbrew/bin/java"
+  export JAVA_HOME="/usr/lib/jvm/default/"
+
   export APPS_HOME=$HOME/Applications
   export BREW="/home/linuxbrew/.linuxbrew/bin"
   export PATH="$JAVA_HOME/bin:$BREW:$PATH"

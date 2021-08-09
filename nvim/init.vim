@@ -58,7 +58,9 @@ call plug#begin('~/.config/nvim/plugged')
   "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
 
   "#### COSMETICS
+  Plug 'chriskempson/base16-vim'
   Plug 'nanotech/jellybeans.vim'
+  Plug 'doums/darcula'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
     let g:gruvbox_contrast_dark='medium'
@@ -132,9 +134,10 @@ syntax on                   " Enable syntax highlight
 syntax enable
 filetype plugin indent on
 
-colorscheme jellybeans
-highlight CursorLine gui=none cterm=none ctermbg=0
-highlight ExtraWhitespace ctermbg=1
+set termguicolors
+colorscheme base16-black-metal
+" highlight CursorLine gui=none cterm=none ctermbg=0
+" highlight ExtraWhitespace ctermbg=1
 
 set clipboard+=unnamedplus
 set nocompatible
@@ -210,6 +213,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <Leader>rn <Plug>(coc-rename)
 
+nmap <Leader>ceb :ConjureEvalBuf<CR>
+nmap <Leader>cef :ConjureEvalCurrentForm<CR>
 
 " Delete without copy
 nnoremap x "_x
