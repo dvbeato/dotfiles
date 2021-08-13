@@ -150,6 +150,7 @@ set expandtab               " all tabs are spaces
 set autoindent
 set smartindent
 set smarttab
+set noswapfile
 set nowrap
 set encoding=utf-8
 set fileencoding=utf-8

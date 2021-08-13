@@ -22,4 +22,5 @@
       - { src: "emacs", dest: "$HOME/.emacs.d" }
       - { src: "nvim", dest: "$HOME/.config/nvim" }
       - { src: "tmux.conf", dest: "$HOME/.tmux.conf" }
+      - { src: "alacritty.yml", dest: "$HOME/.alacritty.yml" }
 
