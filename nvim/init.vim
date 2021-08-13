@@ -137,7 +137,7 @@ filetype plugin indent on
 set termguicolors
 colorscheme base16-black-metal
 " highlight CursorLine gui=none cterm=none ctermbg=0
-" highlight ExtraWhitespace ctermbg=1
+highlight ExtraWhitespace ctermbg=1
 
 set clipboard+=unnamedplus
 set nocompatible
@@ -176,6 +176,9 @@ let NERDTreeIgnore = ['\.pyc$']
 " Close Vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+
+runtime coc-config.vim
+
 " Shortcuts
 
 nnoremap <SPACE> <Nop>
@@ -208,10 +211,6 @@ nmap <silent> <leader>evf :edit! $MYVIMRC<CR>
 " Git
 nmap <Leader>gs :Git<CR>
 nmap <Leader>gb :Gblame<CR>
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <Leader>rn <Plug>(coc-rename)
 
 nmap <Leader>ceb :ConjureEvalBuf<CR>
 nmap <Leader>cef :ConjureEvalCurrentForm<CR>
