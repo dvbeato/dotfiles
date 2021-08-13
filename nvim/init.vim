@@ -58,6 +58,8 @@ call plug#begin('~/.config/nvim/plugged')
   "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
 
   "#### COSMETICS
+
+  Plug 'ryanoasis/vim-devicons'
   Plug 'chriskempson/base16-vim'
   Plug 'nanotech/jellybeans.vim'
   Plug 'doums/darcula'
@@ -163,6 +165,7 @@ set history=100
 set backspace=indent,eol,start
 set listchars=tab:>-,trail:.,extends:>,precedes:<
 set list
+set guifont=Fira\ Code\ Retina\ Nerd\ Font\ Complete\ Mono:h12
 
 if has('gui_running')
   set guioptions-=T       " remove toolbar
