@@ -104,7 +104,7 @@ export VISUAL=vim
 
 # Mac only
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  eval $(/opt/homebrew/bin/brew shellenv)
+#  eval $(/opt/homebrew/bin/brew shellenv)
 
   alias emacs='open -a Emacs'
   alias idea='open -a "IntelliJ IDEA CE"'

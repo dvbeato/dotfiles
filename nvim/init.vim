@@ -26,6 +26,8 @@ call plug#begin('~/.config/nvim/plugged')
   " IDE like plugins
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+  Plug 'dense-analysis/ale'
+
   "#### LANG AND FRAMEWORKS
 
   " golang
