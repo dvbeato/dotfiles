@@ -33,15 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " clojure plugins
   Plug 'Olical/conjure', {'tag': 'v4.22.1'}
-"  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"    map  <Leader>cen  :%Eval<CR>
-"    map  <Leader>crt  :RunTests<CR>
 
-"  Plug 'clojure-vim/clojure.vim', { 'for': 'clojure' }
-"  let g:clojure_syntax_keywords = {
-"        \'clojureMacro': ["schema.core/def"],
-"        \'clojureFunc': ["schema.core/def"],
-"        \}
   Plug 'guns/vim-sexp'
     let g:sexp_mappings = {
       \ 'sexp_raise_list': '<M-;>',
@@ -51,14 +43,9 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'guns/vim-clojure-highlight'
 
-  "Plug 'tpope/vim-sexp-mappings-for-regular-people'
-  "Plug 'clojure-vim/acid.nvim', {'for': 'clojure', 'do': ':UpdateRemotePlugins' }
-  "Plug 'Vigemus/impromptu.nvim', { 'for': 'clojure' }
-  "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
-
   "#### COSMETICS
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
+  Plug 'p00f/nvim-ts-rainbow'
   Plug 'ayu-theme/ayu-vim'
   let ayucolor="light"
 
@@ -113,37 +100,6 @@ call plug#begin('~/.config/nvim/plugged')
     let g:airline_symbols.branch = ''
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = ''
-
-  Plug 'junegunn/rainbow_parentheses.vim'
-    let g:rainbow_active = 1
-    let g:rainbow#colors = {
-      \   'dark': [
-      \     ['yellow',  'orange1'     ],
-      \     ['green',   'yellow1'     ],
-      \     ['cyan',    'greenyellow' ],
-      \     ['magenta', 'green1'      ],
-      \     ['red',     'springgreen1'],
-      \     ['yellow',  'cyan1'       ],
-      \     ['green',   'slateblue1'  ],
-      \     ['cyan',    'magenta1'    ],
-      \     ['magenta', 'purple1'     ]
-      \   ],
-      \   'light': [
-      \     ['yellow',  'orange1'     ],
-      \     ['green',   'yellow1'     ],
-      \     ['cyan',    'greenyellow' ],
-      \     ['magenta', 'green1'      ],
-      \     ['red',     'springgreen1'],
-      \     ['yellow',  'cyan1'       ],
-      \     ['green',   'slateblue1'  ],
-      \     ['cyan',    'magenta1'    ],
-      \     ['magenta', 'purple1'     ]
-      \   ]
-      \ }
-      augroup rainbow_lisp
-        autocmd!
-        autocmd FileType lisp,clojure,scheme RainbowParentheses
-      augroup END
 
 call plug#end()
 
@@ -257,5 +213,12 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+ --   colors = {}, -- table of hex strings
+ --   termcolors = {} -- table of colour name strings
+  }
 }
 EOF
