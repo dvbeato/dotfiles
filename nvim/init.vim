@@ -46,6 +46,10 @@ call plug#begin('~/.config/nvim/plugged')
   "#### COSMETICS
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'p00f/nvim-ts-rainbow'
+
+  Plug 'kyazdani42/nvim-web-devicons' " for file icons
+  Plug 'kyazdani42/nvim-tree.lua'
+
   Plug 'ayu-theme/ayu-vim'
   let ayucolor="light"
 
