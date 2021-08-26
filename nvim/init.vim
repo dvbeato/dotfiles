@@ -3,14 +3,13 @@
 
 call plug#begin('~/.config/nvim/plugged')
   "#### UTILITIES
+
   " git plugins
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
 
   " tmux
   Plug 'preservim/vimux'
-
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
   " misc plugins
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -58,7 +57,12 @@ call plug#begin('~/.config/nvim/plugged')
   "Plug 'clojure-vim/jazz.nvim', { 'for': 'clojure' }
 
   "#### COSMETICS
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+  Plug 'ayu-theme/ayu-vim'
+  let ayucolor="light"
+
+  Plug 'sainnhe/gruvbox-material'
   Plug 'ryanoasis/vim-devicons'
   Plug 'chriskempson/base16-vim'
   Plug 'nanotech/jellybeans.vim'
@@ -69,12 +73,23 @@ call plug#begin('~/.config/nvim/plugged')
 
   " air-line plugins
   Plug 'vim-airline/vim-airline'
+
   Plug 'vim-airline/vim-airline-themes'
     let g:airline_powerline_fonts = 1
 
     if !exists('g:airline_symbols')
       let g:airline_symbols = {}
     endif
+
+    let g:airline_mode_map = {
+          \ 'c': 'C',
+          \ 'n': 'N',
+          \ 'V': 'V',
+          \ 'i': 'I'}
+
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_section_z = '%2l/%L☰%2v'
+    let g:airline#extensions#wordcount#enabled = 0
 
     " unicode symbols
     let g:airline_left_sep = '»'
@@ -137,7 +152,7 @@ syntax enable
 filetype plugin indent on
 
 set termguicolors
-colorscheme base16-black-metal
+colorscheme gruvbox-material
 " highlight CursorLine gui=none cterm=none ctermbg=0
 highlight ExtraWhitespace ctermbg=1
 
@@ -201,7 +216,7 @@ nnoremap <C-h> <C-w>h
 nmap <Leader>1  :NERDTreeToggle<CR>
 map  <Leader>o  :GFiles<CR>
 map  <Leader>ff :Files<CR>
-map  <Leader>b  :Buffers<CR>
+nnoremap  gb  :Buffers<CR>
 map  <Leader>C  :Commands<CR>
 map  <Leader>F  :Rg<CR>
 
