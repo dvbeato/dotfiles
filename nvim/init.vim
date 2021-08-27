@@ -194,8 +194,8 @@ nmap <silent> <leader>evf :edit! $MYVIMRC<CR>
 nmap <Leader>gs :Git<CR>
 nmap <Leader>gb :Gblame<CR>
 
-nmap <Leader>ceb :ConjureEvalBuf<CR>
-nmap <Leader>cef :ConjureEvalCurrentForm<CR>
+nmap <Leader>eb :ConjureEvalBuf<CR>
+nmap <Leader>ef :ConjureEvalCurrentForm<CR>
 
 " Delete without copy
 nnoremap x "_x
