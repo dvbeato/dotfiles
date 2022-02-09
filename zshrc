@@ -104,7 +104,7 @@ export VISUAL=vim
 
 # Mac only
 if [[ "$OSTYPE" == "darwin"* ]]; then
-#  eval $(/opt/homebrew/bin/brew shellenv)
+  eval $(/opt/homebrew/bin/brew shellenv)
 
   alias emacs='open -a Emacs'
   alias idea='open -a "IntelliJ IDEA CE"'
@@ -172,10 +172,11 @@ function update-dotfiles { git -C $HOME/.dotfiles pull }
 function update-vimfiles { git -C $HOME/.vimfiles pull }
 function = { echo "$1" | bc }
 
-export DEV_HOME="$HOME/Development"
+export DEVHOME="$HOME/Development"
 
 # GOLANG
-export GOPATH="$DEV_HOME/projects/go"
+export GOPATH="$DEVHOME/projects/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
