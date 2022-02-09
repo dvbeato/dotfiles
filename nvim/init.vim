@@ -30,6 +30,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   "#### LANG AND FRAMEWORKS
 
+  Plug 'mattn/emmet-vim'
+
   " golang
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 

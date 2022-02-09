@@ -1,10 +1,6 @@
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-if [ -z $TMUX ]; then;
-   tmux
-fi
-
 export GPG_TTY=$(tty)
 
 export ZSH_DISABLE_COMPFIX=true
@@ -19,10 +15,13 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
 ZSH_THEME="dvbeato"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
+
+[[ -z $TMUX ]] && tmux
 
 #TERM=xterm
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -128,7 +127,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
   export APPS_HOME=$HOME/Applications
   export BREW="/home/linuxbrew/.linuxbrew/bin"
-  export PATH="$JAVA_HOME/bin:$BREW:$PATH"
+  export PIP_HOME="$HOME/.local/bin"
+  export PATH="$JAVA_HOME/bin:$BREW:$PIP_HOME:$PATH"
 fi
 
 # aliases

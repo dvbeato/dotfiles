@@ -209,7 +209,7 @@ colors:
   # Primary colors
   primary:
     # background: '0x1c1e26'
-    background: '#131313'
+    background: '#131518'
     foreground: '#666666'
       #    foreground: '0xe0e0e0'
 
