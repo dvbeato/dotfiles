@@ -124,8 +124,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias pbpaste='xclip -selection clipboard -o'
   alias open='xdg-open'
 
- # export JAVA_HOME="/home/linuxbrew/.linuxbrew/bin/java"
-  export JAVA_HOME="/usr/lib/jvm/default/"
+  export JAVA_HOME="/usr/lib/jvm/default/java-1.17.0-openjdk-amd64"
 
   export APPS_HOME=$HOME/Applications
   export BREW="/home/linuxbrew/.linuxbrew/bin"
@@ -172,6 +171,11 @@ fi
 function update-dotfiles { git -C $HOME/.dotfiles pull }
 function update-vimfiles { git -C $HOME/.vimfiles pull }
 function = { echo "$1" | bc }
+
+export DEV_HOME="$HOME/Development"
+
+# GOLANG
+export GOPATH="$DEV_HOME/projects/go"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
