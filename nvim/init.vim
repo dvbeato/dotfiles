@@ -117,7 +117,8 @@ syntax enable
 filetype plugin indent on
 
 set termguicolors
-colorscheme gruvbox-material
+colorscheme onedark
+highlight NvimTreeNormal guibg=#222328
 " highlight CursorLine gui=none cterm=none ctermbg=0
 highlight ExtraWhitespace ctermbg=1
 
@@ -178,7 +179,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
 " navigation
-nmap <Leader>1  :NERDTreeToggle<CR>
+nmap <Leader>1  :NvimTreeToggle<CR>
 map  <Leader>o  :GFiles<CR>
 map  <Leader>ff :Files<CR>
 nnoremap  gb  :Buffers<CR>
@@ -210,24 +211,31 @@ vnoremap p "_dP
 "learn how to add new line and keep parentheses as first char
 
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
- --   colors = {}, -- table of hex strings
- --   termcolors = {} -- table of colour name strings
+  require'nvim-tree'.setup {
+    auto_close = true,
+    view = {
+      width = 40
+    }
   }
-}
+
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = { "javascript" }, -- List of parsers to ignore installing
+    highlight = {
+      enable = true,              -- false will disable the whole extension
+      -- disable = { "c", "rust" },  -- list of language that will be disabled
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
+    },
+    rainbow = {
+      enable = true,
+      extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+      max_file_lines = nil, -- Do not enable for files with more than n lines, int
+   --   colors = {}, -- table of hex strings
+   --   termcolors = {} -- table of colour name strings
+    }
+  }
 EOF
