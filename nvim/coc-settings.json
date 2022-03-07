@@ -23,7 +23,6 @@
         }
       }
     },
-
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
@@ -33,9 +32,7 @@
       ],
       "initializationOptions": {},
       "settings": {}
-    }
-  },
-
+    },
     "clojure-lsp": {
       "command": "clojure-lsp",
       "filetypes": ["clojure"],
@@ -53,3 +50,4 @@
     }
   }
 }
+

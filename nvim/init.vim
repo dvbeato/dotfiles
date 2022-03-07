@@ -12,7 +12,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'preservim/vimux'
 
   " misc plugins
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'stsewd/fzf-checkout.vim'
@@ -55,8 +54,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kyazdani42/nvim-tree.lua'
 
   Plug 'ayu-theme/ayu-vim'
-  let ayucolor="light"
 
+  Plug 'arzg/vim-colors-xcode'
+  Plug 'phanviet/vim-monokai-pro'
   Plug 'sainnhe/gruvbox-material'
   Plug 'ryanoasis/vim-devicons'
   Plug 'chriskempson/base16-vim'
@@ -117,8 +117,7 @@ syntax enable
 filetype plugin indent on
 
 set termguicolors
-colorscheme onedark
-highlight NvimTreeNormal guibg=#222328
+colorscheme monokai_pro
 " highlight CursorLine gui=none cterm=none ctermbg=0
 highlight ExtraWhitespace ctermbg=1
 
@@ -155,66 +154,30 @@ if has('gui_running')
   set columns=999         " full width
 endif
 
-let NERDTreeIgnore = ['\.pyc$']
-
-" NERDTree
-" Close Vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-
 runtime coc-config.vim
 
-" Shortcuts
+highlight WhichKeyFloating guibg=#000000
 
-nnoremap <SPACE> <Nop>
-let mapleader=" "
+"# NvimTree
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_add_trailing = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 0,
+    \ 'files': 1,
+    \ 'folder_arrows': 0,
+    \ }
 
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-set timeoutlen=500
-
-" panels
-nnoremap <C-k> <C-w>k
-nnoremap <C-j> <C-w>j
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
-
-" navigation
-nmap <Leader>1  :NvimTreeToggle<CR>
-map  <Leader>o  :GFiles<CR>
-map  <Leader>ff :Files<CR>
-nnoremap  gb  :Buffers<CR>
-map  <Leader>C  :Commands<CR>
-map  <Leader>F  :Rg<CR>
-
-" exit term
-tnoremap <ESC><ESC> <C-\><C-N>
-
-" VIMFile
-nmap <silent> <leader>rvf :source $MYVIMRC<CR>
-nmap <silent> <leader>evf :edit! $MYVIMRC<CR>
-
-" Git
-nmap <Leader>gs :Git<CR>
-nmap <Leader>gb :Gblame<CR>
-
-nmap <Leader>eb :ConjureEvalBuf<CR>
-nmap <Leader>ef :ConjureEvalCurrentForm<CR>
-
-" Delete without copy
-nnoremap x "_x
-nnoremap X "_X
-vnoremap p "_dP
-
-"TODO
-"fix <S-j>, it's being used by paredit and I'd like to use it as join lines
-"learn how to scroll down without new lines
-"learn how to add new line and keep parentheses as first char
+"highlight NvimTreeNormal guibg=#2D2A2E
+highlight NvimTreeFolderName gui=bold guifg=#78DCE8
+highlight NvimTreeOpenedFolderName gui=bold guifg=#78DCE8
 
 lua <<EOF
   require'nvim-tree'.setup {
     auto_close = true,
     view = {
-      width = 40
+      width = 36
     }
   }
 
@@ -239,3 +202,5 @@ lua <<EOF
     }
   }
 EOF
+
+runtime keybinds.vim
