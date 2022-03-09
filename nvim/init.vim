@@ -21,21 +21,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'liuchengxu/vim-which-key'
 
-  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " IDE like plugins
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
   Plug 'dense-analysis/ale'
 
   "#### LANG AND FRAMEWORKS
 
+  " Html
   Plug 'mattn/emmet-vim'
 
   " golang
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-  " clojure plugins
-  Plug 'Olical/conjure', {'tag': 'v4.22.1'}
+  " clojure
+  Plug 'Olical/conjure', {'tag': 'v4.30.1'}
 
   Plug 'guns/vim-sexp'
     let g:sexp_mappings = {
@@ -119,7 +118,7 @@ filetype plugin indent on
 set termguicolors
 colorscheme monokai_pro
 " highlight CursorLine gui=none cterm=none ctermbg=0
-highlight ExtraWhitespace ctermbg=1
+highlight ExtraWhitespace ctermbg=2
 
 set clipboard+=unnamedplus
 set nocompatible
@@ -127,6 +126,7 @@ set tabstop=2               " number of visual spaces per TAB
 set softtabstop=2           " number of spaces in TAB when editing
 set shiftwidth=2
 set expandtab               " all tabs are spaces
+set splitright              " open split buffers at right
 set autoindent
 set smartindent
 set smarttab

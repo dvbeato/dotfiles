@@ -7,6 +7,7 @@
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
+let maplocalleader=","
 
 " panels - easier navigation
 nnoremap <C-k> <C-w>k
@@ -70,14 +71,5 @@ let g:which_key_map.g = {
       \ 'name' : '+git',
       \ 's' : 'git status',
       \ 'b' : 'git blame',
-      \ }
-
-" Clojure
-nnoremap <silent> <Leader>ceb :ConjureEvalBuf<CR>
-nnoremap <silent> <Leader>cef :ConjureEvalCurrentForm<CR>
-let g:which_key_map.c = {
-      \ 'name' : '+clojure',
-      \ 'eb' : 'eval buffer',
-      \ 'ef' : 'eval form',
       \ }
 
