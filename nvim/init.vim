@@ -52,62 +52,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kyazdani42/nvim-web-devicons' " for file icons
   Plug 'kyazdani42/nvim-tree.lua'
 
-  Plug 'ayu-theme/ayu-vim'
-
-  Plug 'arzg/vim-colors-xcode'
-  Plug 'phanviet/vim-monokai-pro'
-  Plug 'sainnhe/gruvbox-material'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'chriskempson/base16-vim'
-  Plug 'nanotech/jellybeans.vim'
-  Plug 'doums/darcula'
-  Plug 'joshdick/onedark.vim'
-  Plug 'morhetz/gruvbox'
-    let g:gruvbox_contrast_dark='medium'
-
-  " air-line plugins
-  Plug 'vim-airline/vim-airline'
-
-  Plug 'vim-airline/vim-airline-themes'
-    let g:airline_powerline_fonts = 1
-
-    if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
-    endif
-
-    let g:airline_mode_map = {
-          \ 'c': 'C',
-          \ 'n': 'N',
-          \ 'V': 'V',
-          \ 'i': 'I'}
-
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline_section_z = '%2l/%L☰%2v'
-    let g:airline#extensions#wordcount#enabled = 0
-    let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-    " unicode symbols
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '▶'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '◀'
-    let g:airline_symbols.linenr = '␊'
-    let g:airline_symbols.linenr = '␤'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
-
-    " airline symbols
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
+  Plug 'dvbeato/morgana-theme', {'branch': 'main'}
 
 call plug#end()
 
@@ -116,9 +61,7 @@ syntax enable
 filetype plugin indent on
 
 set termguicolors
-colorscheme monokai_pro
-" highlight CursorLine gui=none cterm=none ctermbg=0
-highlight ExtraWhitespace ctermbg=2
+colorscheme morgana
 
 set clipboard+=unnamedplus
 set nocompatible
@@ -144,6 +87,8 @@ set incsearch               " Find the next match as we type the search
 set hlsearch                " highlight matches search
 set history=100
 set backspace=indent,eol,start
+" highlight CursorLine gui=none cterm=none ctermbg=0
+" highlight ExtraWhitespace ctermbg=2
 set listchars=tab:>-,trail:.,extends:>,precedes:<
 set list
 set guifont=Fira\ Code\ Retina\ Nerd\ Font\ Complete\ Mono:h12
@@ -154,9 +99,27 @@ if has('gui_running')
   set columns=999         " full width
 endif
 
-runtime coc-config.vim
+let g:modelabel={
+       \ 'n'  : 'NORMAL ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ "\<C-V>" : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
 
-highlight WhichKeyFloating guibg=#000000
+set laststatus=2
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=\ %{g:modelabel[mode()]}
+set statusline+=%#CursorLine#
+set statusline+=\ %f
+set statusline+=%{&modified?'*':''}
+set statusline+=\ %Y
+
+runtime coc-config.vim
 
 "# NvimTree
 let g:nvim_tree_highlight_opened_files = 1
@@ -164,21 +127,23 @@ let g:nvim_tree_indent_markers = 1
 let g:nvim_tree_add_trailing = 1
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
-    \ 'folders': 0,
+    \ 'folders': 1,
     \ 'files': 1,
-    \ 'folder_arrows': 0,
+    \ 'folder_arrows': 1,
     \ }
-
-"highlight NvimTreeNormal guibg=#2D2A2E
-highlight NvimTreeFolderName gui=bold guifg=#78DCE8
-highlight NvimTreeOpenedFolderName gui=bold guifg=#78DCE8
 
 lua <<EOF
   require'nvim-tree'.setup {
     auto_close = true,
+    open_on_setup = true,
     view = {
       width = 36
-    }
+    },
+    git = {
+      enable = true,
+      ignore = false,
+      timeout = 400,
+   },
   }
 
   require'nvim-treesitter.configs'.setup {
