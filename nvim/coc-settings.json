@@ -1,6 +1,7 @@
 {
   "coc.preferences.useQuickfixForLocations": true,
   "suggest.snippetIndicator": "🍦",
+  "sumneko-lua.enableNvimLuaDev": true,
   "languageserver": {
     "ccls": {
       "command": "ccls",

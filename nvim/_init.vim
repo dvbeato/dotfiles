@@ -93,6 +93,10 @@ set listchars=tab:>-,trail:.,extends:>,precedes:<
 set list
 set guifont=Fira\ Code\ Retina\ Nerd\ Font\ Complete\ Mono:h12
 
+let &titlestring = expand("%:@")
+set title
+
+
 if has('gui_running')
   set guioptions-=T       " remove toolbar
   set lines=999           " full height
@@ -135,7 +139,7 @@ let g:nvim_tree_show_icons = {
 lua <<EOF
   require'nvim-tree'.setup {
     auto_close = true,
-    open_on_setup = true,
+    open_on_setup = false,
     view = {
       width = 36
     },
