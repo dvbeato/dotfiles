@@ -1,5 +1,10 @@
+-- VIM KEYBINDS
+
+local vim_api = vim.api
+local vim_g = vim.g
+
 local function map(m, shortcut, command)
-  vim.api.nvim_set_keymap(m, shortcut, command, { noremap = true, silent = true })
+  vim_api.nvim_set_keymap(m, shortcut, command, { noremap = true, silent = true })
 end
 
 -- Normal Map
@@ -14,8 +19,8 @@ end
 
 nmap("<SPACE>", "<Nop>")
 
-vim.g.mapleader=" "
-vim.g.maplocalleader=","
+vim_g.mapleader=" "
+vim_g.maplocalleader=","
 
 nmap("<C-k>", "<C-w>k")
 nmap("<C-j>", "<C-w>j")

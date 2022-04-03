@@ -1,5 +1,5 @@
+-- VIM STATUSLINE
 
--- Statusline
 local modes = {
   ["n"]  = "NORMAL",
   ["no"] = "NORMAL",

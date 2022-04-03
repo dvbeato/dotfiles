@@ -1,3 +1,4 @@
+-- VIM PLUGGINS
 
 local Plug = vim.fn['plug#']
 

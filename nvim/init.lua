@@ -1,3 +1,5 @@
+-- VIM INIT
+
 require("pluggings")
 require("theme")
 require("settings")
