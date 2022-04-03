@@ -78,10 +78,10 @@ Statusline.active = function()
     "%#Statusline#",
     update_mode_colors(),
     mode(),
-    "%#Normal# ",
+    "%#StatusLine# ",
     filepath(),
     filename(),
-    "%#Normal#",
+    "%#StatusLine#",
     "%=%#StatusLineExtra#",
     filetype(),
   }
