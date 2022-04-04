@@ -72,6 +72,15 @@ local function filetype()
   return string.format(" %s ", vim.bo.filetype):upper()
 end
 
+local function cocStatus()
+  local cocstatus = ''
+  if vim.fn.exists('*coc#status') == 0 then
+    return ''
+  end
+  cocstatus = vim.api.nvim_call_function('coc#status', {})
+  return cocstatus
+end
+
 Statusline = {}
 
 Statusline.active = function()
@@ -84,6 +93,7 @@ Statusline.active = function()
     filename(),
     "%#StatusLine#",
     "%=%#StatusLineExtra#",
+    cocStatus(),
     filetype(),
   }
 end

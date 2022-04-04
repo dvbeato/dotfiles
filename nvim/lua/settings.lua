@@ -30,6 +30,7 @@ vim_set.history      = 100
 vim_set.backspace    = "indent,eol,start"
 vim_set.swapfile     = false
 vim_set.hidden       = true
+vim_set.updatetime   = 300
 
 vim.cmd [[
   autocmd TermOpen * setlocal nonumber norelativenumber
