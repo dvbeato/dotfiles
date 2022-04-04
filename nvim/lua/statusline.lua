@@ -20,7 +20,8 @@ local modes = {
   ["rm"] = "-MOAR-",
   ["r?"] = "CNFIRM",
   ["!"]  = "-SHLL-",
-  ["t"]  = "-TERM-",
+  ["t"]  = "I-TERM",
+  ["nt"] = "N-TERM",
 }
 
 local api = vim.api
@@ -28,7 +29,7 @@ local fn = vim.fn
 
 local function mode()
   local current_mode = api.nvim_get_mode().mode
-  return string.format(" %s ", modes[current_mode]):upper()
+  return string.format(" %s ", (modes[current_mode] or current_mode)):upper()
 end
 
 local function update_mode_colors()
