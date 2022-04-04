@@ -65,9 +65,11 @@ hi("CursorLine",        {bg(cursorLine)})
 hi("CursorLineNr",      {bg(cursorLine), fg(cursorlineNr)})
 hi("CursorLineColumn",  {bg(cursorLine)})
 hi("LineNr",            {fg(comments)})
+hi("Folded",            {bg(blackDarker1), fg(gray)})
 
 -- GUI
 hi("VertSplit",               {bg(blackLight1), fg(background)})
+hi("SignColumn",              {bg(background),  fg(comments)})
 hi("StatusLine",              {bg(white),       fg(blackLight1)})
 hi("StatusLineNC",            {fg(black)})
 hi("StatusLineAccent",        {bg(blue),        fg(black)})
@@ -75,6 +77,8 @@ hi("StatusLineInsertAccent",  {bg(green),       fg(black)})
 hi("StatusLineVisualAccent",  {bg(magenta),     fg(black)})
 hi("StatuslineCmdLineAccent", {bg(yellow),      fg(black)})
 hi("StatusLineExtra",         {bg(gray),        fg(black)})
+hi("TabLine",                 {bg(blackDarker1)})
+hi("TabLineFill",             {bg(blackDarker1)})
 
 -- AUTO COMPLETION
 hi("Pmenu",        {bg(blackDarker1)})
