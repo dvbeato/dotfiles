@@ -89,11 +89,7 @@ Statusline.active = function()
 end
 
 function Statusline.inactive()
-  return " %F"
-end
-
-function Statusline.short()
-  return "%#StatusLineNC#   NvimTree"
+  return ""
 end
 
 api.nvim_exec([[
@@ -101,7 +97,6 @@ api.nvim_exec([[
   au!
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()
+  au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.inactive()
   augroup END
 ]], false)
-
