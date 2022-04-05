@@ -72,13 +72,17 @@ local function filetype()
   return string.format(" %s ", vim.bo.filetype):upper()
 end
 
+vim.g.coc_status_error_sign = "  "
+vim.g.coc_status_warning_sign = "  "
+
 local function cocStatus()
-  local cocstatus = ''
-  if vim.fn.exists('*coc#status') == 0 then
-    return ''
-  end
-  cocstatus = vim.api.nvim_call_function('coc#status', {})
+  local cocstatus = vim.fn["coc#status"]()
   return cocstatus
+end
+
+local function gitbranch()
+  local branch = vim.fn["FugitiveHead"]()
+  return "  " .. branch .. " "
 end
 
 Statusline = {}
@@ -88,7 +92,10 @@ Statusline.active = function()
     "%#Statusline#",
     update_mode_colors(),
     mode(),
-    "%#StatusLine# ",
+    "%#StatusLineBranch#",
+    gitbranch(),
+    "%#StatusLineBranch#",
+    "%#StatusLine#",
     filepath(),
     filename(),
     "%#StatusLine#",
