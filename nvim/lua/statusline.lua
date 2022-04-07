@@ -51,6 +51,16 @@ local function update_mode_colors()
   return mode_color
 end
 
+local function show_modified()
+  local bufnr = fn.bufnr()
+  local bufmodified = fn.getbufvar(bufnr, '&mod')
+  if bufmodified == 1 then
+    return "*"
+  else
+    return ""
+  end
+end
+
 local function filepath()
   local fpath = fn.fnamemodify(fn.expand "%", ":~:.:h")
   if fpath == "" or fpath == "." then
@@ -62,10 +72,11 @@ end
 
 local function filename()
   local fname = fn.expand "%:t"
+  local modsignal = show_modified()
   if fname == "" then
       return ""
   end
-  return fname .. " "
+  return fname .. modsignal .. " "
 end
 
 local function filetype()
@@ -109,11 +120,47 @@ function Statusline.inactive()
   return ""
 end
 
-api.nvim_exec([[
+vim.cmd [[
   augroup Statusline
   au!
   au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.inactive()
   augroup END
-]], false)
+]]
+
+local function tabhi(index)
+  if index == fn.tabpagenr() then
+    return '%#TabLineSel#'
+  else
+    return '%#TabLine#'
+  end
+end
+
+Tabline = {}
+
+Tabline.active = function()
+  local tline = {}
+  local offset = 36
+
+  for index = 1, fn.tabpagenr('$') do
+    local winnr = fn.tabpagewinnr(index)
+    local buflist = fn.tabpagebuflist(index)
+    local bufnr = buflist[winnr]
+    local bufname = fn.fnamemodify(fn.bufname(bufnr), ":p:.")
+    local hili = tabhi(index)
+    local tab = {
+      hili,
+      bufname,
+      hili
+    }
+    table.insert(tline,  table.concat(tab, " "))
+  end
+
+  return string.rep(" ", offset) .. table.concat(tline) .. '%#TabLineFill#'
+end
+
+vim.cmd [[
+  set tabline=%!v:lua.Tabline.active()
+]]
+

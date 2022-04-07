@@ -81,7 +81,7 @@ hi("StatuslineCmdLineAccent",  {bg(yellow),      fg(black)})
 hi("StatuslineTerminalAccent", {bg(blackDarker1),      fg(white)})
 hi("StatusLineExtra",          {bg(gray),        fg(black)})
 hi("TabLine",                  {bg(blackDarker1)})
-hi("TabLineFill",              {bg(blackDarker1)})
+hi("TabLineFill",              {bg(blackDarker1), fg(blackDarker1)})
 
 -- AUTO COMPLETION
 hi("Pmenu",        {bg(blackDarker1)})
