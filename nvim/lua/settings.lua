@@ -9,6 +9,7 @@ vim_set.cursorline   = true                 -- highlight current line
 vim_set.encoding     = 'utf-8'
 vim_set.expandtab    = true                 -- all tabs are spaces
 vim_set.fileencoding = 'utf-8'
+vim_set.filetype     = 'on'
 vim_set.hidden       = true
 vim_set.history      = 100
 vim_set.hlsearch     = true                 -- highlight matches search
