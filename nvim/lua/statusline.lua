@@ -169,11 +169,16 @@ Tabline.active = function()
     local bufnr   = buflist[winnr]
     local bufname = fn.fnamemodify(fn.bufname(bufnr), ":p:.")
     local hili    = tabhi(index)
-    local tab = {
-      hili,
-      bufname,
-      hili
-    }
+    local tab = {}
+    if bufname == '' then
+      tab = {}
+    else
+      tab = {
+        hili,
+        bufname,
+        hili
+      }
+    end
     table.insert(tline,  table.concat(tab, " "))
   end
 
