@@ -21,7 +21,6 @@ ZSH_THEME="dvbeato"
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
-[[ -z $TMUX ]] && tmux
 
 #TERM=xterm
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -58,6 +57,38 @@ CASE_SENSITIVE="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Mac only
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+
+  alias emacs='open -a Emacs'
+  alias idea='open -a "IntelliJ IDEA CE"'
+
+  # Android Setup
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
+
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+# LINUX only
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  alias ls='ls --color=auto'
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
+  alias open='xdg-open'
+
+  export JAVA_HOME="/usr/lib/jvm/default/java-1.17.0-openjdk-amd64"
+
+  export APPS_HOME=$HOME/Applications
+  export BREW="/home/linuxbrew/.linuxbrew/bin"
+  export PIP_HOME="$HOME/.local/bin"
+  export PATH="$JAVA_HOME/bin:$BREW:$PIP_HOME:$PATH"
+fi
+
+[[ -z $TMUX ]] && tmux
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -101,35 +132,6 @@ export VISUAL=vim
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Mac only
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  eval $(/opt/homebrew/bin/brew shellenv)
-
-  alias emacs='open -a Emacs'
-  alias idea='open -a "IntelliJ IDEA CE"'
-
-  # Android Setup
-  export ANDROID_HOME="$HOME/Library/Android/sdk"
-  export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
-
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
-  export PATH="$JAVA_HOME/bin:$PATH"
-fi
-
-# LINUX only
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  alias ls='ls --color=auto'
-  alias pbcopy='xclip -selection clipboard'
-  alias pbpaste='xclip -selection clipboard -o'
-  alias open='xdg-open'
-
-  export JAVA_HOME="/usr/lib/jvm/default/java-1.17.0-openjdk-amd64"
-
-  export APPS_HOME=$HOME/Applications
-  export BREW="/home/linuxbrew/.linuxbrew/bin"
-  export PIP_HOME="$HOME/.local/bin"
-  export PATH="$JAVA_HOME/bin:$BREW:$PIP_HOME:$PATH"
-fi
 
 # aliases
 # git
