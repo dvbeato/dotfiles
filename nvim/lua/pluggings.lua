@@ -26,6 +26,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug 'dense-analysis/ale'
 
   --#### LANG AND FRAMEWORKS
+  -- Terraform
+  Plug 'hashivim/vim-terraform'
 
   -- Html
   Plug 'mattn/emmet-vim'

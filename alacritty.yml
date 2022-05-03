@@ -698,6 +698,7 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
+  - { key: Space, mods: Control, chars: "\x00" }
   - { key: Key0, mods: Alt, chars: "\x1b0" }
   - { key: Key1, mods: Alt, chars: "\x1b1" }
   - { key: Key2, mods: Alt, chars: "\x1b2" }

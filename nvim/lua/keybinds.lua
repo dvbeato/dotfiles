@@ -3,26 +3,43 @@
 local vim_api = vim.api
 local vim_g = vim.g
 
-local function noremap(m, shortcut, command)
-  vim_api.nvim_set_keymap(m, shortcut, command, { noremap = true, silent = true })
+local function merge(tableA, tableB)
+  for k, v in pairs(tableB) do
+    if k and v then
+      tableA[k] = v
+    end
+  end
+  return tableA
 end
 
-local function map(m, shortcut, command)
-  vim_api.nvim_set_keymap(m, shortcut, command, { noremap = false, silent = true })
+local function noremap(m, shortcut, command, opt)
+  vim_api.nvim_set_keymap(m, shortcut, command, merge({ noremap = true, silent = true }, opt))
+end
+
+local function map(m, shortcut, command, opt)
+  vim_api.nvim_set_keymap(m, shortcut, command, merge({ noremap = false, silent = true }, opt))
 end
 
 -- Normal Map
-local function nnoremap(shortcut, command)
-  noremap('n', shortcut, command)
+local function nnoremap(shortcut, command, opt)
+  opt = opt or {}
+  noremap('n', shortcut, command, opt)
 end
 
-local function nmap(shortcut, command)
-  map('n', shortcut, command)
+local function inoremap(shortcut, command, opt)
+  opt = opt or {}
+  noremap('i', shortcut, command, opt)
+end
+
+local function nmap(shortcut, command, opt)
+  opt = opt or {}
+  map('n', shortcut, command, opt)
 end
 
 -- Terminal Map
-local function tmap(shortcut, command)
-  noremap('t', shortcut, command)
+local function tmap(shortcut, command, opt)
+  opt = opt or {}
+  noremap('t', shortcut, command, opt)
 end
 
 nnoremap("<SPACE>", "<Nop>")
@@ -58,3 +75,5 @@ tmap("<ESC><ESC>", "<C-\\><C-N>")
 nmap("gd", "<Plug>(coc-definition)")
 nmap("gr", "<Plug>(coc-references)")
 nmap("rn", "<Plug>(coc-rename)")
+
+inoremap("<C-SPACE>", "coc#refresh()", {expr = true})

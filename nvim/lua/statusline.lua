@@ -140,12 +140,10 @@ end
 vim.g.tab_offset = 0
 
 function OffsetOn()
-  print("Offset On")
   vim.g.tab_offset = 36
 end
 
 function OffsetOff()
-  print("Offset Off")
   vim.g.tab_offset = 0
 end
 
