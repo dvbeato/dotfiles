@@ -66,7 +66,6 @@ require'nvim-tree'.setup {
 -- NvimTreesitter
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "javascript" }, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
     -- disable = { "c", "rust" },  -- list of language that will be disabled
@@ -77,7 +76,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   rainbow = {
-    enable = true,
+    enable = false,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
  --   colors = {}, -- table of hex strings

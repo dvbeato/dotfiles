@@ -15,11 +15,16 @@ local function hi(higroup, options)
   vim.cmd(string.format("highlight %s %s", higroup, table.concat(options, " ")))
 end
 
-local blackDarker1 = "#171C1C"
-local blackDarker2 = "#092227"
-local black        = "#242a2e"
-local blackLight1  = "#2b363a"
-local blackLight2  = "#333D3D"
+--local blackDarker1 = "#171C1C"
+--local blackDarker2 = "#092227"
+--local black        = "#242a2e"
+--local blackLight1  = "#2b363a"
+--local blackLight2  = "#333D3D"
+local blackDarker1 = "#111111"
+local blackDarker2 = "#000000"
+local black        = "#1c1c1c"
+local blackLight1  = "#272727"
+local blackLight2  = "#2D2D2D"
 local gray         = "#77777A"
 local white        = "#b4b4b4"
 local red          = "#E15A60"
@@ -52,6 +57,7 @@ local s_keyword    = magenta
 
 hi("clear", {})
 hi("Normal",            {bg(background), fg(foreground)})
+hi("Error",             {bg(red)})
 hi("Search",            {bg(orange),     fg(blackLight1)})
 hi("Visual",            {bg(visualSel)})
 

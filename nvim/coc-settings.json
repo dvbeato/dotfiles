@@ -1,6 +1,7 @@
 {
   "coc.preferences.useQuickfixForLocations": true,
   "suggest.snippetIndicator": "🍦",
+  "lsp-keep-workspace-alive": false,
   "languageserver": {
     "ccls": {
       "command": "ccls",
