@@ -4,6 +4,7 @@ local vim_set = vim.opt
 
 vim_set.autoindent   = true
 vim_set.backspace    = "indent,eol,start"
+vim_set.clipboard    = "unnamedplus"
 vim_set.cursorline   = true
 vim_set.cursorline   = true                 -- highlight current line
 vim_set.encoding     = 'utf-8'
