@@ -57,10 +57,10 @@ nnoremap("<C-h>", "<C-w>h")
 nnoremap("<Leader>1", ":NvimTreeToggle<CR>")
 
 -- Find
-nnoremap("<leader>ff", ":Files<CR>")
-nnoremap("<leader>fb", ":Buffers<CR>")
-nnoremap("<leader>fe", ":Rg<CR>")
-nnoremap("<leader>fc", ":Commands<CR>")
+nnoremap("<leader>ff", ":Telescope find_files<CR>")
+nnoremap("<leader>fb", ":Telescope buffers<CR>")
+nnoremap("<leader>fg", ":Telescope live_grep<CR>")
+nnoremap("<leader>fc", ":Telescope commands<CR>")
 
 -- Git
 nnoremap("<leader>gs", ":Git<CR>")

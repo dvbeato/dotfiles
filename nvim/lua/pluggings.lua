@@ -21,6 +21,11 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'liuchengxu/vim-which-key'
 
+
+  -- Telescope
+  Plug 'nvim-lua/plenary.nvim'
+  Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
+
   -- IDE like plugins
   Plug('neoclide/coc.nvim', {branch = 'release'})
   Plug 'dense-analysis/ale'
@@ -84,3 +89,20 @@ require'nvim-treesitter.configs'.setup {
  --   termcolors = {} -- table of colour name strings
   }
 }
+
+--require'telescope'.load_extension('project')
+--require('telescope').setup {
+--  extensions = {
+--project = {
+--      base_dirs = {
+--        '~/dev/src',
+--        {'~/dev/src2'},
+--        {'~/dev/src3', max_depth = 4},
+--        {path = '~/dev/src4'},
+--        {path = '~/dev/src5', max_depth = 2},
+--      },
+--      hidden_files = true, -- default: false
+--      theme = "dropdown"
+--    }
+--  }
+--}
