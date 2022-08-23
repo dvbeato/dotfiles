@@ -31,7 +31,7 @@ local red          = "#E15A60"
 local green        = "#99c794"
 local yellow       = "#FAC863"
 local orange       = "#f3a451"
-local blue         = "#5bafd7"
+local blue         = "#73a6bb"
 local magenta      = "#C594C5"
 local cyan         = "#5FB3B3"
 

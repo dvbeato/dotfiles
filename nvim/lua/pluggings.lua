@@ -19,6 +19,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'ap/vim-css-color'
   Plug 'tpope/vim-surround'
+  Plug 'guns/vim-sexp' -- paredit
   Plug 'liuchengxu/vim-which-key'
 
 
@@ -42,8 +43,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   -- clojure
   Plug('Olical/conjure', {tag = 'v4.30.1'})
-
-  Plug 'guns/vim-clojure-highlight'
+--  Plug 'guns/vim-clojure-highlight'
 
   --#### COSMETICS
   Plug('nvim-treesitter/nvim-treesitter', {['do'] = vim.fn[':TSUpdate']})  -- We recommend updating the parsers on update
@@ -52,9 +52,9 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug 'kyazdani42/nvim-web-devicons' -- for file icons
   Plug 'kyazdani42/nvim-tree.lua'
 
-  Plug('dvbeato/morgana-theme', {branch = 'main'})
-
 vim.call('plug#end')
+
+vim.api.nvim_command('let g:conjure#log#hud#enabled = v:false')
 
 -- NvimTree
 require'nvim-tree'.setup {
@@ -82,10 +82,17 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   rainbow = {
-    enable = false,
+    enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
- --   colors = {}, -- table of hex strings
+    max_file_lines = 1000, -- Do not enable for files with more than n lines, int
+    colors = {
+      "#b4b4b4",
+      "#FAC863",
+      "#99c794",
+      "#f3a451",
+      "#73a6bb",
+      "#C594C5",
+   } -- table of hex strings
  --   termcolors = {} -- table of colour name strings
   }
 }
