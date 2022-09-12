@@ -137,25 +137,6 @@ local function tabhi(index)
   end
 end
 
-vim.g.tab_offset = 0
-
-function OffsetOn()
-  vim.g.tab_offset = 36
-end
-
-function OffsetOff()
-  vim.g.tab_offset = 0
-end
-
-vim.cmd [[
-  augroup Tabline
-  au!
-  au BufWinEnter,FileType NvimTree call v:lua.OffsetOn()
-  au BufWinLeave *NvimTree* call v:lua.OffsetOff()
-  augroup END
-  augroup END
-]]
-
 Tabline = {}
 
 Tabline.active = function()
@@ -165,22 +146,19 @@ Tabline.active = function()
     local winnr   = fn.tabpagewinnr(index)
     local buflist = fn.tabpagebuflist(index)
     local bufnr   = buflist[winnr]
-    local bufname = fn.fnamemodify(fn.bufname(bufnr), ":p:.")
+    local rootpath = fn.fnamemodify(fn.getcwd(winnr, index),":t")
     local hili    = tabhi(index)
-    local tab = {}
-    if bufname == '' then
-      tab = {}
-    else
-      tab = {
-        hili,
-        bufname,
-        hili
-      }
-    end
+
+    local tab = {
+      hili,
+      rootpath,
+      hili
+    }
+
     table.insert(tline,  table.concat(tab, " "))
   end
 
-  return string.rep(" ", vim.g.tab_offset) .. table.concat(tline) .. '%#TabLineFill#'
+  return table.concat(tline) .. '%#TabLineFill#'
 end
 
 vim.cmd [[

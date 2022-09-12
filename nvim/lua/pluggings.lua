@@ -42,7 +42,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('fatih/vim-go', {['do'] = vim.fn[':GoUpdateBinaries'] })
 
   -- clojure
-  Plug('Olical/conjure', {tag = 'v4.30.1'})
+  Plug('Olical/conjure')
 --  Plug 'guns/vim-clojure-highlight'
 
   --#### COSMETICS
@@ -58,6 +58,9 @@ vim.api.nvim_command('let g:conjure#log#hud#enabled = v:false')
 
 -- NvimTree
 require'nvim-tree'.setup {
+  sync_root_with_cwd = true,
+  open_on_setup = true,
+  open_on_tab = true,
   view = {
     width = 36
   },
