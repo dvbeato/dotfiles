@@ -26,8 +26,7 @@ local black        = "#1c1c1c"
 local blackLight1  = "#272727"
 local blackLight2  = "#2D2D2D"
 local gray         = "#77777A"
-local white        = "#b4b4b4"
-local red          = "#E15A60"
+local white        = "#b4b4b4" local red          = "#E15A60"
 local green        = "#99c794"
 local yellow       = "#FAC863"
 local orange       = "#f3a451"
@@ -91,7 +90,7 @@ hi("TabLineFill",              {bg(blackDarker1), fg(blackDarker1)})
 
 -- AUTO COMPLETION
 hi("Pmenu",        {bg(blackDarker1)})
-hi("PmenuSel",     {bg(blackDarker1), fg(cyan)})
+hi("PmenuSel",     {bg(black), fg(green)})
 
 -- SYNTAX
 hi("PreProc",      {fg(s_preproc)})
