@@ -1,0 +1,120 @@
+export LANG=en_US.UTF-8
+
+export GPG_TTY=$(tty)
+
+[[ -z $TMUX ]] && tmux
+
+# AUTOCOMPLETION
+
+# initialize autocompletion
+autoload -U compinit
+compinit
+
+# history setup
+setopt SHARE_HISTORY
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# autocompletion using arrow keys (based on history)
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+
+source "$HOME/.dotfiles/zsh/prompt"
+
+# Mac only
+#
+ if [[ "$OSTYPE" == "darwin"* ]]; then
+#   eval $(/opt/homebrew/bin/brew shellenv)
+
+   alias emacs='open -a Emacs'
+   alias idea='open -a "IntelliJ IDEA CE"'
+
+   # Android Setup
+   export ANDROID_HOME="$HOME/Library/Android/sdk"
+   export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
+
+   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
+   export PATH="$JAVA_HOME/bin:$PATH"
+ fi
+
+# LINUX only
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  alias ls='ls --color=auto'
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
+  alias open='xdg-open'
+
+  export JAVA_HOME="/usr/lib/jvm/default/java-1.17.0-openjdk-amd64"
+
+  export APPS_HOME=$HOME/Applications
+  export BREW="/home/linuxbrew/.linuxbrew/bin"
+  export PIP_HOME="$HOME/.local/bin"
+  export PATH="$JAVA_HOME/bin:$BREW:$PIP_HOME:$PATH"
+fi
+
+[[ -s "$HOME/.z.sh" ]] && source $HOME/.z.sh
+[[ -s "$HOME/.env" ]] && source "$HOME/.env"
+
+export EDITOR='vim'
+export VISUAL=vim
+
+alias g='git'
+alias ga='g add'
+alias gl='g log'
+alias gs='g status'
+alias gpl='g pull'
+alias gps='g push'
+alias gc='g commit -am'
+alias gck='g checkout'
+alias gdf='g diff'
+alias gdfn='df --name-only'
+alias gunstage='g reset HEAD -- '
+
+# utils
+alias pong='ping www.google.com'
+alias myip="ifconfig | grep 'inet ' | cut -d ' ' -f2 | grep -v '127.0.0.1'"
+
+alias ls='ls -aG'
+alias ll='ls -lhapG'
+
+if [ -x "$(command -v nvim)" ]; then
+  alias vim=nvim
+fi
+
+export DEVHOME="$HOME/Development"
+
+# GOLANG
+export GOPATH="$DEVHOME/projects/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#
+#[[ -s "$DEVHOME/sdks/flutter" ]] && export PATH="$PATH:$DEVHOME/sdks/flutter/bin"
+#
+## zsh-syntax-highlighting
+#[[ -s "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#[[ -s "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#[[ -s "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
+## [[ -s "$HOME/.asdf/completations/asdf.bash" ]] && . $HOME/.asdf/completations/asdf.bash
+#
+## Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin"
+#
+##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#export SDKMAN_DIR="$HOME/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+#
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#  alias vim='nvim'
+#fi
+#
+
+# eval "$(starship init zsh)"

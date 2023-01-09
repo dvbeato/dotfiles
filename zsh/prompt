@@ -1,0 +1,29 @@
+
+color="%(?.green.red)"
+
+function _fg_color() {
+  local color=$1
+  local text=$2
+  echo "%F{$color}$text%f"
+}
+
+function _bg_color() {
+  local color=$1
+  local text=$2
+  echo "%K{$color}$text%k"
+}
+
+os_logo=""
+bg_color="$color"
+fg_color="black"
+timefmt="%*"
+hostname="%m"
+separator="$(_fg_color "$color" '')"
+timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k$separator"
+
+init="%F{$color}$%f"
+nl=$'\n'
+
+timestatus="%*"
+
+PS1="$timestr%~$nl$init "
