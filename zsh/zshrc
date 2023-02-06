@@ -4,6 +4,9 @@ export GPG_TTY=$(tty)
 
 [[ -z $TMUX ]] && tmux
 
+
+source "$HOME/.dotfiles/zsh/pluggins/z/z.plugin.zsh"
+
 # AUTOCOMPLETION
 
 # initialize autocompletion
@@ -21,12 +24,48 @@ setopt HIST_EXPIRE_DUPS_FIRST
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
-source "$HOME/.dotfiles/zsh/prompt"
+setopt PROMPT_SUBST
+
+color="%(?.green.red)"
+
+function _fg_color() {
+  local color=$1
+  local text=$2
+  echo "%F{$color}$text%f"
+}
+
+function _bg_color() {
+  local color=$1
+  local text=$2
+  echo "%K{$color}$text%k"
+}
+
+function _git_branch() {
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  echo "%F{cyan}($branch)%f"
+}
+
+os_logo=""
+bg_color="$color"
+fg_color="black"
+timefmt="%*"
+hostname="%m"
+separator="$(_fg_color "$color" '')"
+timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k$separator"
+
+init="%F{$color}$%f"
+nl=$'\n'
+
+timestatus="%*"
+
+prompt='$timestr%~ $(_git_branch)$nl$init '
+
+#source "$HOME/.dotfiles/zsh/prompt"
 
 # Mac only
 #
  if [[ "$OSTYPE" == "darwin"* ]]; then
-#   eval $(/opt/homebrew/bin/brew shellenv)
+   eval $(/opt/homebrew/bin/brew shellenv)
 
    alias emacs='open -a Emacs'
    alias idea='open -a "IntelliJ IDEA CE"'

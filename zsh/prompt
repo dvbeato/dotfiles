@@ -13,11 +13,17 @@ function _bg_color() {
   echo "%K{$color}$text%k"
 }
 
+function _git_branch() {
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  echo "$branch"
+}
+
 os_logo=""
 bg_color="$color"
 fg_color="black"
 timefmt="%*"
 hostname="%m"
+gbranch="$(_git_branch)"
 separator="$(_fg_color "$color" '')"
 timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k$separator"
 
@@ -26,4 +32,4 @@ nl=$'\n'
 
 timestatus="%*"
 
-PS1="$timestr%~$nl$init "
+prompt="$timestr%~ $(_git_branch)$nl$init "
