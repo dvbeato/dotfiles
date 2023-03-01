@@ -111,7 +111,7 @@ Statusline.active = function()
     filename(),
     "%#StatusLine#",
     "%=%#StatusLineExtra#",
-    cocStatus(),
+--    cocStatus(),
     filetype(),
   }
 end

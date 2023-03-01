@@ -72,13 +72,13 @@ nnoremap("<Leader>tr", ":VimuxPromptCommand<CR>")
 tmap("<ESC><ESC>", "<C-\\><C-N>")
 
 -- Coc
-nmap("gd", "<Plug>(coc-definition)")
-nmap("gr", "<Plug>(coc-references)")
-nmap("rn", "<Plug>(coc-rename)")
+--nmap("gd", "<Plug>(coc-definition)")
+--nmap("gr", "<Plug>(coc-references)")
+--nmap("rn", "<Plug>(coc-rename)")
 
-inoremap("<C-SPACE>", "coc#refresh()", {expr = true})
+--inoremap("<C-SPACE>", "coc#refresh()", {expr = true})
 
-vim.cmd [[
-  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-]]
+--vim.cmd [[
+--  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+--]]
 
