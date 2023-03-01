@@ -24,6 +24,8 @@ local pluggins = {
   -- tmux integration
   "preservim/vimux",
 
+  "junegunn/goyo.vim",
+
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
@@ -41,10 +43,13 @@ local pluggins = {
       {'saadparwaiz1/cmp_luasnip'}, -- Optional
       {'hrsh7th/cmp-nvim-lua'},     -- Optional
 
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},             -- Required
-      {'rafamadriz/friendly-snippets'}, -- Optional
+      -- status
+      { 'j-hui/fidget.nvim',
+        config=function()
+          require"fidget".setup{}
+        end}
     },
+
     config=function()
       local lsp = require('lsp-zero').preset({
         name = 'minimal',
@@ -58,6 +63,19 @@ local pluggins = {
 
       lsp.setup()
     end
+  },
+
+  { -- Set lualine as statusline
+    'nvim-lualine/lualine.nvim',
+    -- See `:help lualine.txt`
+    opts = {
+      options = {
+        icons_enabled = false,
+        --theme = 'onedark',
+        component_separators = '|',
+        section_separators = '',
+      },
+    },
   },
 
   --#### LANG AND FRAMEWORKS
@@ -79,11 +97,17 @@ local pluggins = {
   ft='clojure'},
 
   -- Telescope
-  "nvim-lua/plenary.nvim",
-  {"nvim-telescope/telescope.nvim",  tag = "0.1.0" },
+  {"nvim-telescope/telescope.nvim",
+   tag = "0.1.0",
+   dependencies = {
+     "nvim-lua/plenary.nvim",
+   }
+  },
 
-  "kyazdani42/nvim-web-devicons", -- for file icons
   {"kyazdani42/nvim-tree.lua",
+  dependencies = {
+    "kyazdani42/nvim-web-devicons", -- for file icons
+  },
   config = function()
 
     require'nvim-tree'.setup {
