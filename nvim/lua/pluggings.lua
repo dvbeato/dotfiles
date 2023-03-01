@@ -1,118 +1,109 @@
 -- VIM PLUGGINS
 
-local Plug = vim.fn['plug#']
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+local pluggins = {
 
-  -- git plugins
-  Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
+  "folke/which-key.nvim",
 
-  -- tmux
-  Plug 'preservim/vimux'
+  -- git 
+  "tpope/vim-fugitive",
+  "airblade/vim-gitgutter",
 
-  -- misc plugins
-  Plug('junegunn/fzf', { dir = '~/.fzf', ['do'] = vim.fn['fzf#install'] })
-  Plug 'junegunn/fzf.vim'
-  Plug 'stsewd/fzf-checkout.vim'
+  -- tmux integration
+  "preservim/vimux",
 
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'ap/vim-css-color'
-  Plug 'tpope/vim-surround'
-  Plug 'guns/vim-sexp' -- paredit
-  Plug 'liuchengxu/vim-which-key'
-
-
-  -- Telescope
-  Plug 'nvim-lua/plenary.nvim'
-  Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
-
-  -- IDE like plugins
-  Plug('neoclide/coc.nvim', {branch = 'release'})
-  Plug 'dense-analysis/ale'
+  {'neoclide/coc.nvim', branch = 'release'},
 
   --#### LANG AND FRAMEWORKS
   -- Terraform
-  Plug 'hashivim/vim-terraform'
+  {'hashivim/vim-terraform',
+  ft='hcl'},
 
   -- Html
-  Plug 'mattn/emmet-vim'
+  {'mattn/emmet-vim',
+  ft='html' },
 
   -- golang
-  Plug('fatih/vim-go', {['do'] = vim.fn[':GoUpdateBinaries'] })
+  {'fatih/vim-go', 
+  ft='go',
+  cmd = 'GoUpdateBinaries'},
 
   -- clojure
-  Plug('Olical/conjure')
---  Plug 'guns/vim-clojure-highlight'
+  {'Olical/conjure',
+  ft='clojure'},
 
-  --#### COSMETICS
-  Plug('nvim-treesitter/nvim-treesitter', {['do'] = vim.fn[':TSUpdate']})  -- We recommend updating the parsers on update
-  Plug 'p00f/nvim-ts-rainbow'
+  -- Telescope
+  "nvim-lua/plenary.nvim",
+  {"nvim-telescope/telescope.nvim",  tag = "0.1.0" },
 
-  Plug 'kyazdani42/nvim-web-devicons' -- for file icons
-  Plug 'kyazdani42/nvim-tree.lua'
+  "kyazdani42/nvim-web-devicons", -- for file icons
+  {"kyazdani42/nvim-tree.lua",
+  config = function()
 
-vim.call('plug#end')
+    require'nvim-tree'.setup {
+      sync_root_with_cwd = true,
+      open_on_setup = true,
+      open_on_tab = true,
+      view = {
+        width = 36
+      },
+      git = {
+        enable = true,
+        ignore = false,
+        timeout = 400,
+      },
+    }
+  end
+},
 
-vim.api.nvim_command('let g:conjure#log#hud#enabled = v:false')
-
--- NvimTree
-require'nvim-tree'.setup {
-  sync_root_with_cwd = true,
-  open_on_setup = true,
-  open_on_tab = true,
-  view = {
-    width = 36
-  },
-  git = {
-    enable = true,
-    ignore = false,
-    timeout = 400,
- },
-}
-
--- NvimTreesitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "clojure", "go", "javascript", "hcl" },
-  auto_install = true,
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 1000, -- Do not enable for files with more than n lines, int
-    colors = {
-      "#b4b4b4",
-      "#FAC863",
-      "#99c794",
-      "#f3a451",
-      "#73a6bb",
-      "#C594C5",
-   } -- table of hex strings
- --   termcolors = {} -- table of colour name strings
+{'nvim-treesitter/nvim-treesitter', 
+cmd = "TSUpdate",
+config = function()
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "c", "lua", "clojure", "go", "javascript", "hcl"},
+    auto_install = true,
+    highlight = {
+      enable = true,              -- false will disable the whole extension
+      -- disable = { "c", "rust" },  -- list of language that will be disabled
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
+    },
+    rainbow = {
+      enable = true,
+      extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+      max_file_lines = 1000, -- Do not enable for files with more than n lines, int
+      colors = {
+        "#b4b4b4",
+        "#FAC863",
+        "#99c794",
+        "#f3a451",
+        "#73a6bb",
+        "#C594C5",
+      } -- table of hex strings
+      --   termcolors = {} -- table of colour name strings
+    }
   }
+end
+  },  -- We recommend updating the parsers on update
+
+  "p00f/nvim-ts-rainbow"
 }
 
---require'telescope'.load_extension('project')
---require('telescope').setup {
---  extensions = {
---project = {
---      base_dirs = {
---        '~/dev/src',
---        {'~/dev/src2'},
---        {'~/dev/src3', max_depth = 4},
---        {path = '~/dev/src4'},
---        {path = '~/dev/src5', max_depth = 2},
---      },
---      hidden_files = true, -- default: false
---      theme = "dropdown"
---    }
---  }
---}
+require("lazy").setup(pluggins)
+
+
