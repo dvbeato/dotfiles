@@ -43,6 +43,10 @@ local pluggins = {
       {'saadparwaiz1/cmp_luasnip'}, -- Optional
       {'hrsh7th/cmp-nvim-lua'},     -- Optional
 
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},             -- Required
+      {'rafamadriz/friendly-snippets'}, -- Optional
+
       -- status
       { 'j-hui/fidget.nvim',
         config=function()
@@ -64,7 +68,66 @@ local pluggins = {
       lsp.setup()
     end
   },
+  { "catppuccin/nvim", 
+    name = "catppuccin",
+    config=function()
+      require('catppuccin').setup({
+        flavour = "frappe", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+      },
+      transparent_background = false,
+      show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+      term_colors = false,
+      dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+      },
+      no_italic = false, -- Force no italic
+      no_bold = false, -- Force no bold
+      styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+      },
+      color_overrides = {
+        frappe = {
+          base = "#1c1e21",
+          mantle = "#18191b",
+          crust = "#111214",
+          surface0 = "#292c31",
+          surface1 = "#383c42",
+        }
+      },
+      custom_highlights = {},
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        gitgutter = true,
+        nvimtree = true,
+        telescope = true,
+        treesitter=true,
+        notify = false,
+        mini = false,
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+      },
+    })
 
+    vim.cmd.colorscheme 'catppuccin'
+
+    end
+  },
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -80,8 +143,7 @@ local pluggins = {
 
   --#### LANG AND FRAMEWORKS
   -- Terraform
-  {'hashivim/vim-terraform',
-  ft='hcl'},
+  {'hashivim/vim-terraform', ft={'terraform','hcl'}},
 
   -- Html
   {'mattn/emmet-vim',
