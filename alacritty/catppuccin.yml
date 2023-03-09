@@ -1,15 +1,15 @@
 colors:
     primary:
         background: "#1c1e21" # base
-        foreground: "#CDD6F4" # text
+        foreground: "#626673" 
         # Bright and dim foreground colors
-        dim_foreground: "#CDD6F4" # text
-        bright_foreground: "#CDD6F4" # text
+        dim_foreground: "#626673" 
+        bright_foreground: "#696c81" 
 
     # Cursor colors
     cursor:
         text: "#1c1e21" # base
-        cursor: "#F5E0DC" # rosewater
+        cursor: "#A6E3A1" # green
     vi_mode_cursor:
         text: "#1c1e21" # base
         cursor: "#B4BEFE" # lavender
