@@ -51,20 +51,23 @@ fg_color="black"
 timefmt="%*"
 hostname="%m"
 separator="$(_fg_color "$color" '')"
-timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k$separator"
+timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k"
 
 init="%F{$color}$%f"
 nl=$'\n'
 
 timestatus="%*"
 
-prompt='$timestr%~ $(_git_branch)$nl$init '
+prompt='$timestr %~ $(_git_branch)$nl$init '
 
 #source "$HOME/.dotfiles/zsh/prompt"
 
 # Mac only
 #
  if [[ "$OSTYPE" == "darwin"* ]]; then
+   alias ls='ls -aG'
+   alias ll='ls -lhapG'
+
    eval $(/opt/homebrew/bin/brew shellenv)
 
    alias emacs='open -a Emacs'
@@ -81,6 +84,7 @@ prompt='$timestr%~ $(_git_branch)$nl$init '
 # LINUX only
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   alias ls='ls --color=auto'
+  alias ll='ls -lhapG' 
   alias pbcopy='xclip -selection clipboard'
   alias pbpaste='xclip -selection clipboard -o'
   alias open='xdg-open'
@@ -115,8 +119,6 @@ alias gunstage='g reset HEAD -- '
 alias pong='ping www.google.com'
 alias myip="ifconfig | grep 'inet ' | cut -d ' ' -f2 | grep -v '127.0.0.1'"
 
-alias ls='ls -aG'
-alias ll='ls -lhapG'
 
 if [ -x "$(command -v nvim)" ]; then
   alias vim=nvim

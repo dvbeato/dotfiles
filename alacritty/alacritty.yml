@@ -22,7 +22,7 @@ window:
     columns: 180
     lines: 60
 
-  opacity: 0.96
+  opacity: 1
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -170,6 +170,8 @@ font:
   # effect.
   #use_thin_strokes: true
 
+import:
+  - ~/.dotfiles/alacritty/catppuccin.yml
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
@@ -237,35 +239,35 @@ font:
 #    magenta: '#b77ee0'
 #    cyan:    '#54ced6'
 #    white:   '#282a2e'
-colors:
-  # Primary colors
-  primary:
-    # background: '0x1c1e26'
-    background: '#131518'
-    foreground: '#666666'
-      #    foreground: '0xe0e0e0'
-
-  # Normal colors
-  normal:
-    black: '0x16161c'
-    red: '0xe95678'
-    green: '0x29d398'
-    yellow: '0xfab795'
-    blue: '0x26bbd9'
-    magenta: '0xee64ac'
-    cyan: '0x26bbd9'
-    white: '0xd5d8da'
-
-  # Bright colors
-  bright:
-    black: '0x5b5858'
-    red: '0xec6a88'
-    green: '0x3fdaa4'
-    yellow: '0xfbc3a7'
-    blue: '0x3fc4de'
-    magenta: '0xf075b5'
-    cyan: '0x6be4e6'
-    white: '0xd5d8da'
+#colors:
+#  # Primary colors
+#  primary:
+#    # background: '0x1c1e26'
+#    background: '#1c1918'
+#    foreground: '#A39A90'
+#      #    foreground: '0xe0e0e0'
+#
+#  # Normal colors
+#  normal:
+#    black: '#1c1918'
+#    red: '#8D3722'
+#    green: '#5e7057'
+#    yellow: '#ce7739'
+#    blue: '#3c6983'
+#    magenta: '#8b5360'
+#    cyan: '#3f5d68'
+#    white: '#A39A90'
+#
+#  # Bright colors
+#  bright:
+#    black: '#1c1918'
+#    red: '#8D3722'
+#    green: '#5e7057'
+#    yellow: '#ce7739'
+#    blue: '#3c6983'
+#    magenta: '#8b5360'
+#    cyan: '#3f5d68'
+#    white: '#A39A90'
 
       #colors:
       #  primary:
