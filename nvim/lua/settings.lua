@@ -1,35 +1,42 @@
--- VIM SETTINGS
+vim.opt.autoindent   = true
+vim.opt.backspace    = "indent,eol,start"
+vim.opt.clipboard    = "unnamedplus"
+vim.opt.cursorline   = true
+vim.opt.cursorline   = true                 -- highlight current line
+vim.opt.encoding     = 'utf-8'
+vim.opt.expandtab    = true                 -- all tabs are spaces
+vim.opt.fileencoding = 'utf-8'
+vim.opt.filetype     = 'on'
+vim.opt.hidden       = true
+vim.opt.history      = 100
+vim.opt.hlsearch     = true                 -- highlight matches search
+vim.opt.incsearch    = true                 -- Find the next match as we type the search
+vim.opt.lazyredraw   = true                 -- redraw only when necessary
+vim.opt.linespace    = 0                    -- don't insert extra pixels between rows
+vim.opt.number       = true                 -- show linenumbers
+vim.opt.shiftwidth   = 2
+vim.opt.showmatch    = true                 -- highlight match {[()]}
+vim.opt.showtabline  = 2
+vim.opt.smartindent  = true
+vim.opt.smarttab     = true
+vim.opt.softtabstop  = 2
+vim.opt.splitright   = true                 -- open split buffers at right
+vim.opt.swapfile     = false
+vim.opt.tabstop      = 2
+vim.opt.updatetime   = 300
+vim.opt.wildmenu     = true                 -- visual autocomplete for command menu
+vim.opt.wrap         = false
 
-local vim_set = vim.opt
+vim.api.nvim_set_keymap('n', "<space>", "<nop>", { noremap = true, silent = true })
+vim.g.mapleader=" "
+vim.g.maplocalleader=","
 
-vim_set.autoindent   = true
-vim_set.backspace    = "indent,eol,start"
-vim_set.clipboard    = "unnamedplus"
-vim_set.cursorline   = true
-vim_set.cursorline   = true                 -- highlight current line
-vim_set.encoding     = 'utf-8'
-vim_set.expandtab    = true                 -- all tabs are spaces
-vim_set.fileencoding = 'utf-8'
-vim_set.filetype     = 'on'
-vim_set.hidden       = true
-vim_set.history      = 100
-vim_set.hlsearch     = true                 -- highlight matches search
-vim_set.incsearch    = true                 -- Find the next match as we type the search
-vim_set.lazyredraw   = true                 -- redraw only when necessary
-vim_set.linespace    = 0                    -- don't insert extra pixels between rows
-vim_set.number       = true                 -- show linenumbers
-vim_set.shiftwidth   = 2
-vim_set.showmatch    = true                 -- highlight match {[()]}
-vim_set.showtabline  = 2
-vim_set.smartindent  = true
-vim_set.smarttab     = true
-vim_set.softtabstop  = 2
-vim_set.splitright   = true                 -- open split buffers at right
-vim_set.swapfile     = false
-vim_set.tabstop      = 2
-vim_set.updatetime   = 300
-vim_set.wildmenu     = true                 -- visual autocomplete for command menu
-vim_set.wrap         = false
+vim.api.nvim_set_keymap('n', "<C-k>", "<C-w>k", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', "<C-j>", "<C-w>j", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', "<C-l>", "<C-w>l", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', "<C-h>", "<C-w>h", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('t', "<esc><esc>", "<C-\\><C-N>", { noremap = true, silent = true })
 
 vim.cmd [[
   autocmd TermOpen * setlocal nonumber norelativenumber
