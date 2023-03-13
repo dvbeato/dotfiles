@@ -34,7 +34,7 @@ local treesitter = {
     },
     config = function()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "c", "lua", "clojure", "go", "javascript", "hcl"},
+        ensure_installed = { "c", "lua", "clojure", "go", "javascript", "hcl", "python", "yaml", "markdown", "bash"},
         auto_install = true,
         highlight = {
           enable = true,              -- false will disable the whole extension
@@ -44,6 +44,9 @@ local treesitter = {
           -- Using this option may slow down your editor, and you may see some duplicate highlights.
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
+        },
+        indent = {
+         enable = true
         },
         rainbow = {
           enable = true,
