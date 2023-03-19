@@ -261,9 +261,10 @@ assign [class="Alacritty"] 1
 assign [class="firefox"] 2
 assign [class="Spotify"] 9
 
+exec setxkbmap -option "ctrl:swapcaps"
+exec --no-startup-id blueberry-tray
+exec picom
+exec feh --randomize --bg-fill /home/bootcry/Pictures/green/
 exec firefox
 exec alacritty
 exec flatpak run com.spotify.Client
-exec feh --randomize --bg-fill /home/bootcry/Pictures/green/
-exec setxkbmap -option "ctrl:swapcaps"
-exec picom
