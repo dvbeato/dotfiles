@@ -21,3 +21,4 @@ emacs/.lsp*
 .cache
 emacs/recentf
 .luarc.json
+*lazy-lock.json
