@@ -1,0 +1,72 @@
+- name: dotfiles setup
+  hosts: all
+  vars:
+    the_user: "{{ ansible_user_id }}" 
+  tasks:
+  - name: clone dotfiles
+    ansible.builtin.git:
+      repo: https://github.com/dvbeato/dotfiles
+      dest: "{{ ansible_env.HOME }}/.dotfiles"
+
+  - name: install oh-my-zsh
+    shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    args:
+      creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
+  - name: setup zshrc dotfile
+    file:
+      src: "$HOME/.dotfiles/zsh/zshrc"
+      dest: "{{ ansible_env.HOME }}/.zshrc"
+      state: link
+      force: yes
+
+  - name: set shell to zsh
+    become: true
+    user:
+      name: "{{ the_user }}"
+      shell: /bin/zsh
+
+  - name: setup tmux dotfile
+    file:
+      src: "$HOME/.dotfiles/tmux/tmux.conf"
+      dest: "{{ ansible_env.HOME }}/.tmux.conf"
+      state: link
+      force: yes
+
+  - name: create config directory if it does not exist
+    ansible.builtin.file:
+      path: "$HOME/.config"
+      state: directory
+        
+  - name: setup i3 dotfiles
+    file:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      state: link
+      force: yes
+    loop:
+      - { src: "$HOME/.dotfiles/linux/i3", dest: "$HOME/.config/i3" }
+      - { src: "$HOME/.dotfiles/linux/polybar", dest: "$HOME/.config/polybar" }
+      - { src: "$HOME/.dotfiles/linux/rofi", dest: "$HOME/.config/rofi" }
+
+  - name: Add nvim ppa:repo
+    become: true
+    ansible.builtin.apt_repository:
+      repo: ppa:neovim-ppa/unstable
+  - name: Run the equivalent of "apt-get update"
+    become: true
+    ansible.builtin.apt:
+      update_cache: yes
+  - name: install neovim 
+    become: true
+    ansible.builtin.apt:
+      pkg:
+        - neovim
+  - name: setup nvim dotfile
+    file:
+      src: "$HOME/.dotfiles/nvim"
+      dest: "{{ ansible_env.HOME }}/.config/nvim"
+      state: link
+      force: yes
+       #  - name: setup nvim
+       #  - name: setup alacritty 

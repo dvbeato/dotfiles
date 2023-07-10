@@ -222,7 +222,7 @@ set $pink      #f5bde6
 set $mauve     #c6a0f6
 set $red       #ed8796
 set $maroon    #ee99a0
-set $peach     #f5a97f
+set $peach     #f5a97f 
 set $green     #a6da95
 set $teal      #8bd5ca
 set $sky       #91d7e3
@@ -250,21 +250,23 @@ set $crust     #181926
 #client.placeholder	    $foreground	$background	$foreground	$background		$background
 
 # target                 title     bg    text   indicator  border
-client.focused           $green    $base $text  $green     $green
+client.focused           $mauve    $base $text  $mauve     $mauve
 client.focused_inactive  $mauve    $base $text  $rosewater $mauve
 client.unfocused         $crust    $base $text  $crust     $crust
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-assign [class="Alacritty"] 1
+assign [class="kitty"] 3
+assign [class="Alacritty"] 3
 assign [class="firefox"] 2
+assign [class="chrome"] 2
 assign [class="Spotify"] 9
 
 exec setxkbmap -option "ctrl:swapcaps"
 exec --no-startup-id blueberry-tray
 exec picom
-exec feh --randomize --bg-fill /home/bootcry/Pictures/green/
-exec firefox
-exec alacritty
-exec flatpak run com.spotify.Client
+exec feh --randomize --bg-fill ~/Pictures/wallpapers/
+exec google-chrome
+exec kitty
+exec spotify
