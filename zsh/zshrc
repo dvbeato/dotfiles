@@ -1,66 +1,130 @@
+
+
+#source "$HOME/.dotfiles/zsh/pluggins/z/z.plugin.zsh"
+#
+## AUTOCOMPLETION
+#
+## initialize autocompletion
+#autoload -U compinit
+#compinit
+#
+## history setup
+#setopt SHARE_HISTORY
+#HISTFILE=$HOME/.zhistory
+#SAVEHIST=1000
+#HISTSIZE=999
+#setopt HIST_EXPIRE_DUPS_FIRST
+#
+## autocompletion using arrow keys (based on history)
+#bindkey '\e[A' history-search-backward
+#bindkey '\e[B' history-search-forward
+#
+#setopt PROMPT_SUBST
+#
+#color="%(?.green.red)"
+#
+#function _fg_color() {
+#  local color=$1
+#  local text=$2
+#  echo "%F{$color}$text%f"
+#}
+#
+#function _bg_color() {
+#  local color=$1
+#  local text=$2
+#  echo "%K{$color}$text%k"
+#}
+#
+#function _git_branch() {
+#  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+#  echo "%F{cyan}($branch)%f"
+#}
+#
+#os_logo=""
+#bg_color="$color"
+#fg_color="black"
+#timefmt="%*"
+#hostname="%m"
+#separator="$(_fg_color "$color" '')"
+#timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k"
+#
+#init="%F{$color}$%f"
+#nl=$'\n'
+#
+#timestatus="%*"
+#
+#prompt='$timestr %~ $(_git_branch)$nl$init '
+
 export LANG=en_US.UTF-8
 
 export GPG_TTY=$(tty)
 
+# oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+plugins=(git zsh-autosuggestions z)
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#39393f"
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
 [[ -z $TMUX ]] && tmux
-
-
-source "$HOME/.dotfiles/zsh/pluggins/z/z.plugin.zsh"
-
-# AUTOCOMPLETION
-
-# initialize autocompletion
-autoload -U compinit
-compinit
-
-# history setup
-setopt SHARE_HISTORY
-HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
-setopt HIST_EXPIRE_DUPS_FIRST
-
-# autocompletion using arrow keys (based on history)
-bindkey '\e[A' history-search-backward
-bindkey '\e[B' history-search-forward
-
-setopt PROMPT_SUBST
-
-color="%(?.green.red)"
-
-function _fg_color() {
-  local color=$1
-  local text=$2
-  echo "%F{$color}$text%f"
-}
-
-function _bg_color() {
-  local color=$1
-  local text=$2
-  echo "%K{$color}$text%k"
-}
-
-function _git_branch() {
-  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  echo "%F{cyan}($branch)%f"
-}
-
-os_logo=""
-bg_color="$color"
-fg_color="black"
-timefmt="%*"
-hostname="%m"
-separator="$(_fg_color "$color" '')"
-timestr="%K{$bg_color}%F{$fg_color} $timefmt %f%k"
-
-init="%F{$color}$%f"
-nl=$'\n'
-
-timestatus="%*"
-
-prompt='$timestr %~ $(_git_branch)$nl$init '
-
-#source "$HOME/.dotfiles/zsh/prompt"
 
 # Mac only
 #
@@ -77,7 +141,7 @@ prompt='$timestr %~ $(_git_branch)$nl$init '
    export ANDROID_HOME="$HOME/Library/Android/sdk"
    export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
 
-   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
+   export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/
    export PATH="$JAVA_HOME/bin:$PATH"
  fi
 

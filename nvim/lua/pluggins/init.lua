@@ -13,6 +13,7 @@ local git = {
   "airblade/vim-gitgutter",
   {
     "tpope/vim-fugitive",
+    lazy=false,
     keys={
       {mode="n", "<leader>gs", ":Git<CR>"},
       {mode="n", "<leader>gb", ":Git blame<CR>"}
