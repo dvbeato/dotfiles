@@ -7,6 +7,7 @@
     ansible.builtin.git:
       repo: https://github.com/dvbeato/dotfiles
       dest: "{{ ansible_env.HOME }}/.dotfiles"
+      update: no
 
   - name: install oh-my-zsh
     shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -45,9 +46,9 @@
       state: link
       force: yes
     loop:
-      - { src: "$HOME/.dotfiles/linux/i3", dest: "$HOME/.config/i3" }
-      - { src: "$HOME/.dotfiles/linux/polybar", dest: "$HOME/.config/polybar" }
-      - { src: "$HOME/.dotfiles/linux/rofi", dest: "$HOME/.config/rofi" }
+      - { src: "$HOME/.dotfiles/linux/config/i3", dest: "$HOME/.config/i3" }
+      - { src: "$HOME/.dotfiles/linux/config/polybar", dest: "$HOME/.config/polybar" }
+      - { src: "$HOME/.dotfiles/linux/config/rofi", dest: "$HOME/.config/rofi" }
 
   - name: Add nvim ppa:repo
     become: true

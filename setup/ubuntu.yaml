@@ -20,7 +20,8 @@
         - awscli
         - ripgrep
         - zsh
-        - ubuntu-desktop
+        - lightdm
+          # - ubuntu-desktop
           #- chrome
     - name: install i3
       ansible.builtin.apt:
