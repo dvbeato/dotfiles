@@ -22,3 +22,4 @@ emacs/.lsp*
 emacs/recentf
 .luarc.json
 *lazy-lock.json
+*/.vagrant

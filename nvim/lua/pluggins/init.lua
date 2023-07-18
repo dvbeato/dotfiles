@@ -26,6 +26,19 @@ local tmux = {
   "preservim/vimux",
 }
 
+local misc = {
+  -- "vim-scripts/paredit.vim",
+  { 
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {}
+  },
+  "tpope/vim-surround",
+  "guns/vim-sexp",
+  "tpope/vim-sexp-mappings-for-regular-people",
+  "tpope/vim-repeat"
+}
+
 local treesitter = {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -72,6 +85,7 @@ local pluggins = {}
 
 utils.concat(pluggins, git)
 utils.concat(pluggins, tmux)
+utils.concat(pluggins, misc)
 utils.concat(pluggins, treesitter)
 utils.concat(pluggins, ui)
 utils.concat(pluggins, lsp)
