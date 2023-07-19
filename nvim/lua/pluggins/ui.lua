@@ -100,6 +100,7 @@ local ui = {
           crust = "#111214",
           surface0 = "#292c31",
           surface1 = "#383c42",
+          flamingo = "#dd7878"
         }
       },
       custom_highlights = {},
