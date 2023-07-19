@@ -1,5 +1,5 @@
 - name: dotfiles setup
-  hosts: all
+  hosts: localhost
   vars:
     the_user: "{{ ansible_user_id }}" 
   tasks:
@@ -21,12 +21,6 @@
       state: link
       force: yes
 
-  - name: set shell to zsh
-    become: true
-    user:
-      name: "{{ the_user }}"
-      shell: /bin/zsh
-
   - name: setup tmux dotfile
     file:
       src: "$HOME/.dotfiles/tmux/tmux.conf"
@@ -46,23 +40,10 @@
       state: link
       force: yes
     loop:
-      - { src: "$HOME/.dotfiles/linux/config/i3", dest: "$HOME/.config/i3" }
-      - { src: "$HOME/.dotfiles/linux/config/polybar", dest: "$HOME/.config/polybar" }
-      - { src: "$HOME/.dotfiles/linux/config/rofi", dest: "$HOME/.config/rofi" }
+      - { src: "$HOME/.dotfiles/wm/config/i3", dest: "$HOME/.config/i3" }
+      - { src: "$HOME/.dotfiles/wm/config/polybar", dest: "$HOME/.config/polybar" }
+      - { src: "$HOME/.dotfiles/wm/config/rofi", dest: "$HOME/.config/rofi" }
 
-  - name: Add nvim ppa:repo
-    become: true
-    ansible.builtin.apt_repository:
-      repo: ppa:neovim-ppa/unstable
-  - name: Run the equivalent of "apt-get update"
-    become: true
-    ansible.builtin.apt:
-      update_cache: yes
-  - name: install neovim 
-    become: true
-    ansible.builtin.apt:
-      pkg:
-        - neovim
   - name: setup nvim dotfile
     file:
       src: "$HOME/.dotfiles/nvim"

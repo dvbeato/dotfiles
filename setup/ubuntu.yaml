@@ -1,5 +1,5 @@
 - name: Ubuntu setup
-  hosts: all
+  hosts: localhost
     #  become: true
   tasks:
     #   - name: Add chrome repository into sources list
@@ -20,16 +20,42 @@
         - awscli
         - ripgrep
         - zsh
-        - lightdm
           # - ubuntu-desktop
           #- chrome
+
+          # - name: set shell to zsh
+          #   become: true
+          #   user:
+          #     name: "{{ the_user }}"
+          #     shell: /bin/zsh
+
     - name: install i3
       ansible.builtin.apt:
         pkg:
         - i3
         - xinit
+        - pulseaudio-utils
+        - brightnessctl
         - polybar
         - feh
+    
+    - name: brightnessctl without sudo
+      ansible.builtin.shell: chmod +s $(which brightnessctl)
+
+    - name: Add nvim ppa:repo
+      become: true
+      ansible.builtin.apt_repository:
+        repo: ppa:neovim-ppa/unstable
+    - name: Run the equivalent of "apt-get update"
+      become: true
+      ansible.builtin.apt:
+        update_cache: yes
+    - name: install neovim 
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - neovim
+
     - name: Remove dependencies that are no longer required
       ansible.builtin.apt:
         autoremove: yes
