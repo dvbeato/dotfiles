@@ -24,6 +24,7 @@ local lsp = {
       -- status
       {
         'j-hui/fidget.nvim',
+        tag = 'legacy',
         config=function()
           require"fidget".setup{}
         end
@@ -38,6 +39,11 @@ local lsp = {
         suggest_lsp_servers = false,
       })
 
+      lsp.on_attach(function(client, bufnr)
+        lsp.default_keymaps({buffer = bufnr})
+
+        vim.keymap.set('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<cr>', {buffer = true})
+      end)
       -- (Optional) Configure lua language server for neovim
       lsp.nvim_workspace()
 
