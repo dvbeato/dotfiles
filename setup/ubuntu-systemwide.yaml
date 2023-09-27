@@ -2,10 +2,6 @@
   hosts: localhost
     #  become: true
   tasks:
-    #   - name: Add chrome repository into sources list
-    #     ansible.builtin.apt_repository:
-    #       repo: deb http://dl.google.com/linux/chrome/deb/ stable main
-    #       state: present
     - name: Run the equivalent of "apt-get update"
       ansible.builtin.apt:
         update_cache: yes
@@ -14,33 +10,13 @@
         pkg:
         - software-properties-common
         - curl
+        - xclip
         - tmux
         - tldr
         - fzf
         - awscli
         - ripgrep
         - zsh
-          # - ubuntu-desktop
-          #- chrome
-
-          # - name: set shell to zsh
-          #   become: true
-          #   user:
-          #     name: "{{ the_user }}"
-          #     shell: /bin/zsh
-
-    - name: install i3
-      ansible.builtin.apt:
-        pkg:
-        - i3
-        - xinit
-        - pulseaudio-utils
-        - brightnessctl
-        - polybar
-        - feh
-    
-    - name: brightnessctl without sudo
-      ansible.builtin.shell: chmod +s $(which brightnessctl)
 
     - name: Add nvim ppa:repo
       become: true

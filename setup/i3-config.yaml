@@ -1,0 +1,22 @@
+- name: i3 config
+  hosts: localhost
+  vars:
+    the_user: "{{ ansible_user_id }}" 
+  tasks:
+
+  - name: create config directory if it does not exist
+    ansible.builtin.file:
+      path: "$HOME/.config"
+      state: directory
+        
+  - name: setup i3 dotfiles
+    file:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      state: link
+      force: yes
+    loop:
+      - { src: "$HOME/.dotfiles/wm/config/i3", dest: "$HOME/.config/i3" }
+      - { src: "$HOME/.dotfiles/wm/config/polybar", dest: "$HOME/.config/polybar" }
+      - { src: "$HOME/.dotfiles/wm/config/rofi", dest: "$HOME/.config/rofi" }
+

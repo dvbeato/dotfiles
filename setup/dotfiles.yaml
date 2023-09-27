@@ -3,11 +3,6 @@
   vars:
     the_user: "{{ ansible_user_id }}" 
   tasks:
-  - name: clone dotfiles
-    ansible.builtin.git:
-      repo: https://github.com/dvbeato/dotfiles
-      dest: "{{ ansible_env.HOME }}/.dotfiles"
-      update: no
 
   - name: install oh-my-zsh
     shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -21,28 +16,24 @@
       state: link
       force: yes
 
-  - name: setup tmux dotfile
-    file:
-      src: "$HOME/.dotfiles/tmux/tmux.conf"
-      dest: "{{ ansible_env.HOME }}/.tmux.conf"
-      state: link
-      force: yes
-
   - name: create config directory if it does not exist
     ansible.builtin.file:
       path: "$HOME/.config"
       state: directory
-        
-  - name: setup i3 dotfiles
+
+  - name: setup tmux dotfile
     file:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
+      src: "$HOME/.dotfiles/tmux"
+      dest: "{{ ansible_env.HOME }}/.config/tmux"
       state: link
       force: yes
-    loop:
-      - { src: "$HOME/.dotfiles/wm/config/i3", dest: "$HOME/.config/i3" }
-      - { src: "$HOME/.dotfiles/wm/config/polybar", dest: "$HOME/.config/polybar" }
-      - { src: "$HOME/.dotfiles/wm/config/rofi", dest: "$HOME/.config/rofi" }
+
+  - name: setup kitty dotfile
+    file:
+      src: "$HOME/.dotfiles/kitty"
+      dest: "{{ ansible_env.HOME }}/.config/kitty"
+      state: link
+      force: yes
 
   - name: setup nvim dotfile
     file:
@@ -50,5 +41,3 @@
       dest: "{{ ansible_env.HOME }}/.config/nvim"
       state: link
       force: yes
-       #  - name: setup nvim
-       #  - name: setup alacritty 

@@ -116,9 +116,9 @@ CASE_SENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git zsh-autosuggestions z)
+plugins=(git z)
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#39393f"
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#39393f"
 
 source $ZSH/oh-my-zsh.sh
 

@@ -1,0 +1,23 @@
+- name: i3 install
+  hosts: localhost
+  tasks:
+    - name: Run the equivalent of "apt-get update"
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: install i3
+      ansible.builtin.apt:
+        pkg:
+        - i3
+        - xinit
+        - pulseaudio-utils
+        - brightnessctl
+        - polybar
+        - feh
+    
+    - name: brightnessctl without sudo
+      ansible.builtin.shell: chmod +s $(which brightnessctl)
+
+    - name: Remove dependencies that are no longer required
+      ansible.builtin.apt:
+        autoremove: yes
