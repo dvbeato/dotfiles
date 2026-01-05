@@ -10,6 +10,9 @@ function utils.merge(tableA, tableB)
 end
 
 function utils.concat(t1,t2)
+    if t2 == nil then
+      return t1
+    end
     for i=1,#t2 do
         t1[#t1+1] = t2[i]
     end

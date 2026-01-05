@@ -9,6 +9,7 @@ local golang  = require('pluggins.golang')
 local webdev  = require('pluggins.webdev')
 local devops  = require('pluggins.devops')
 
+
 local git = {
   "airblade/vim-gitgutter",
   {
@@ -57,13 +58,13 @@ local treesitter = {
           -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
           -- Using this option may slow down your editor, and you may see some duplicate highlights.
           -- Instead of true it can also be a list of languages
-          additional_vim_regex_highlighting = false,
+--          additional_vim_regex_highlighting = false,
         },
         indent = {
          enable = true
         },
         rainbow = {
-          enable = true,
+          enable = false,
           extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
           max_file_lines = 1000, -- Do not enable for files with more than n lines, int
           colors = {

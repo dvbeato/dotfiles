@@ -14,6 +14,7 @@ vim.opt.incsearch    = true                 -- Find the next match as we type th
 vim.opt.lazyredraw   = true                 -- redraw only when necessary
 vim.opt.linespace    = 0                    -- don't insert extra pixels between rows
 vim.opt.number       = true                 -- show linenumbers
+vim.opt.list         = true
 vim.opt.shiftwidth   = 2
 vim.opt.showmatch    = true                 -- highlight match {[()]}
 vim.opt.showtabline  = 2

@@ -130,7 +130,13 @@ source $ZSH/oh-my-zsh.sh
 #
  if [[ "$OSTYPE" == "darwin"* ]]; then
    alias ls='ls -aG'
-   alias ll='ls -lhapG'
+   if command -v eza &>/dev/null; then
+     alias ll='eza -la --icons'
+   else
+     alias ll='ls -lhapG'
+   fi
+
+   alias m='multipass'
 
    eval $(/opt/homebrew/bin/brew shellenv)
 
@@ -141,7 +147,8 @@ source $ZSH/oh-my-zsh.sh
    export ANDROID_HOME="$HOME/Library/Android/sdk"
    export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
 
-   export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/
+   export JAVA_HOME=/opt/homebrew/Cellar/openjdk/25.0.1/
+#   /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/
    export PATH="$JAVA_HOME/bin:$PATH"
  fi
 
@@ -223,3 +230,5 @@ export NVM_DIR="$HOME/.nvm"
 #
 
 # eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
